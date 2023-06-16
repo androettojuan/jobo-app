@@ -7,6 +7,8 @@ import TextInput from "../../components/TextInput/TextInput";
 const AccountPage = () => {
   const [editar, setEditar] = useState(false);
   const [displayName, setName] = useState("Juan Manuel Androetto");
+  const [phone, setPhone] = useState("351 555 5555");
+  const [address, setAddress] = useState("Av. Siempreviva 742");
 
   const iconSelect = () => {
     if (editar === false) {
@@ -53,6 +55,27 @@ const AccountPage = () => {
         value={displayName || ""}
         onChange={(e) => setName(e.target.value)}
         placeholder="Nombre completo"
+      ></TextInput>
+      <TextInput
+        label={"Email"}
+        disabled={true}
+        value={"adaslsaflmalfma@gmail.com" || ""}
+      ></TextInput>
+      <TextInput
+        label={"Teléfono"}
+        disabled={!editar}
+        name="phone"
+        value={phone || ""}
+        onChange={(e) => setPhone(e.target.value)}
+        placeholder="Solo numeros, sin 0 ni 15"
+      ></TextInput>
+      <TextInput
+        label={"Dirección"}
+        disabled={!editar}
+        name="address"
+        value={address || ""}
+        onChange={(e) => setAddress(e.target.value)}
+        placeholder="Solo numeros, sin 0 ni 15"
       ></TextInput>
     </div>
   );
