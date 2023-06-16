@@ -28,7 +28,7 @@ export const StyledLoadingIcon = styled(LoadIcon, {
   animationTimingFunction: "linear",
 });
 
-export const StyledAccountName = styled("input", {
+export const StyledTextInput = styled("input", {
   border: "none",
   borderRadius: "10em",
   padding: "14px 14px 12px 14px",

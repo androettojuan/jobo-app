@@ -1,13 +1,13 @@
 import React from "react";
 import {
   StyledInputContainer,
-  StyledSearchIcon,
-  StyledAccountName,
-  StyledLoadingIcon,
   StyledLabel,
-} from "./AccountName.styles";
+  StyledLoadingIcon,
+  StyledSearchIcon,
+  StyledTextInput,
+} from "./Textinput.styles";
 
-const AccountName = ({
+const TextInput = ({
   name,
   search,
   loading,
@@ -21,7 +21,7 @@ const AccountName = ({
     <StyledInputContainer>
       <StyledLabel>
         {label}
-        <StyledAccountName
+        <StyledTextInput
           name={name}
           value={value}
           onChange={onChange}
@@ -35,4 +35,4 @@ const AccountName = ({
   );
 };
 
-export default AccountName;
+export default TextInput;
