@@ -1,10 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
 import { routes } from "./pages/routes";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Routes>
         {routes?.map((route) => (
           <Route

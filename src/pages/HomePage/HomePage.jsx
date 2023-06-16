@@ -1,9 +1,11 @@
 import React from "react";
 
+import BottomBar from "../../components/BottomBar/BottomBar";
+
 const HomePage = () => {
   return (
     <div>
-      <h1>Home Page</h1>
+      <BottomBar></BottomBar>
     </div>
   );
 };
