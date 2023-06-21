@@ -6,9 +6,7 @@ export const StyledHomeLayout = styled("div", {
   flexDirection: "column",
 });
 
-export const StyledHomeSearch = styled("div", {
-  marginTop: "32px",
-});
+export const StyledHomeSearch = styled("div", {});
 
 export const StyledHomeButtons = styled("div", {
   marginTop: "36px",
@@ -34,4 +32,10 @@ export const StyledHomeTitle = styled("div", {
   fontSize: "20px",
   fontWeight: 700,
   lineHeight: "27px",
+});
+
+export const StyledHomeFavorites = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "10px",
 });

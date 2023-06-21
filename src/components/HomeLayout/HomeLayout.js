@@ -2,6 +2,7 @@ import {
   StyledHomeButtonLg,
   StyledHomeButtons,
   StyledHomeButtonsSm,
+  StyledHomeFavorites,
   StyledHomeLayout,
   StyledHomeSearch,
   StyledHomeTitle,
@@ -18,5 +19,7 @@ HomeLayout.ButtonLg = StyledHomeButtonLg;
 HomeLayout.ButtonsSm = StyledHomeButtonsSm;
 
 HomeLayout.Title = StyledHomeTitle;
+
+HomeLayout.Favorites = StyledHomeFavorites;
 
 export default HomeLayout;

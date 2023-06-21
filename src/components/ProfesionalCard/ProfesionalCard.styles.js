@@ -12,7 +12,7 @@ export const StyledPhoto = styled("img", {
   borderTopLeftRadius: "16px",
   borderBottomLeftRadius: "16px",
   objectFit: "cover",
-  width: "86px",
+  width: "90px",
 });
 
 export const StyledInfoAndFavorites = styled("div", {
@@ -20,7 +20,7 @@ export const StyledInfoAndFavorites = styled("div", {
   flexDirection: "row",
   justifyContent: "space-between",
   width: "100%",
-  padding: "16px 16px",
+  padding: "18px 16px",
 });
 
 export const StyledInfoContainer = styled("div", {
