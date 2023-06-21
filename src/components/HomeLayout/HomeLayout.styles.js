@@ -2,6 +2,8 @@ import { styled } from "../../theme/styled";
 
 export const StyledHomeLayout = styled("div", {
   padding: "0 16px",
+  display: "flex",
+  flexDirection: "column",
 });
 
 export const StyledHomeSearch = styled("div", {
@@ -12,6 +14,7 @@ export const StyledHomeButtons = styled("div", {
   marginTop: "36px",
   display: "flex",
   flexDirection: "row",
+  justifyContent: "center",
 });
 
 export const StyledHomeButtonLg = styled("div", {

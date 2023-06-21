@@ -3,7 +3,6 @@ import { styled } from "../../theme/styled";
 export const StyledProfesionalCard = styled("div", {
   display: "flex",
   flexDirection: "row",
-  height: "72px",
   shadow: 1,
   borderTopRightRadius: "16px",
   borderBottomRightRadius: "16px",
@@ -12,6 +11,8 @@ export const StyledProfesionalCard = styled("div", {
 export const StyledPhoto = styled("img", {
   borderTopLeftRadius: "16px",
   borderBottomLeftRadius: "16px",
+  objectFit: "cover",
+  width: "86px",
 });
 
 export const StyledInfoAndFavorites = styled("div", {
@@ -19,7 +20,7 @@ export const StyledInfoAndFavorites = styled("div", {
   flexDirection: "row",
   justifyContent: "space-between",
   width: "100%",
-  padding: "10px 16px",
+  padding: "16px 16px",
 });
 
 export const StyledInfoContainer = styled("div", {
@@ -29,7 +30,7 @@ export const StyledInfoContainer = styled("div", {
 
 export const StyledName = styled("span", {
   fontWeight: 600,
-  fontSize: "18px",
+  fontSize: "16px",
   lineHeight: "19px",
   marginBottom: "8px",
 });
@@ -49,6 +50,7 @@ export const StyledFavoritesAndRating = styled("div", {
 
 export const StyledFavorites = styled("div", {
   color: "$red",
+  fontSize: "18px",
 });
 
 export const StyledRatingContainer = styled("div", {
