@@ -27,7 +27,7 @@ export const {
       white: "#ffffff",
       primary: "#09BC8A",
       dark: "#333333",
-      gray: "#a1a1a1",
+      grey: "#a1a1a1",
       secondary: "#004346",
       light: "#e9e9e9",
       lighter: "#fafafa",
