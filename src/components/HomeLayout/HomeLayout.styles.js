@@ -25,3 +25,10 @@ export const StyledHomeButtonsSm = styled("div", {
   gridColumnGap: "8px",
   gridRowGap: "8px",
 });
+
+export const StyledHomeTitle = styled("div", {
+  margin: "32px 0",
+  fontSize: "20px",
+  fontWeight: 700,
+  lineHeight: "27px",
+});

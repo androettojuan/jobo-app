@@ -4,6 +4,7 @@ import {
   StyledHomeButtonsSm,
   StyledHomeLayout,
   StyledHomeSearch,
+  StyledHomeTitle,
 } from "./HomeLayout.styles";
 
 const HomeLayout = StyledHomeLayout;
@@ -15,5 +16,7 @@ HomeLayout.Buttons = StyledHomeButtons;
 HomeLayout.ButtonLg = StyledHomeButtonLg;
 
 HomeLayout.ButtonsSm = StyledHomeButtonsSm;
+
+HomeLayout.Title = StyledHomeTitle;
 
 export default HomeLayout;
