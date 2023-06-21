@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { FiCheck, FiEdit3 } from "react-icons/fi";
-import Header from "../../components/Header/Header";
-import TextInput from "../../components/TextInput/TextInput";
-import UserPhoto from "../../components/UserPhoto/UserPhoto";
-import AccountLayout from "../../components/AccountLayout/AccoutLayout";
-import Button from "../../components/Button/Button";
-import AccountName from "../../components/AccountName/AccountName";
-import ScrollLayout from "../../components/ScrollLayout/ScrollLayout";
+import Header from "../components/Header/Header";
+import TextInput from "../components/TextInput/TextInput";
+import UserPhoto from "../components/UserPhoto/UserPhoto";
+import AccountLayout from "../components/AccountLayout/AccoutLayout";
+import Button from "../components/Button/Button";
+import AccountName from "../components/AccountName/AccountName";
+import ScrollLayout from "../components/ScrollLayout/ScrollLayout";
 
 const admin = {
   displayName: "Pedro Gomez",

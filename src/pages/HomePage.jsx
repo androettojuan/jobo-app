@@ -1,10 +1,10 @@
 import React from "react";
-import TextInput from "../../components/TextInput/TextInput";
-import HomeLayout from "../../components/HomeLayout/HomeLayout";
-import HomeButton from "../../components/HomeButton/HomeButton";
-import Title from "../../components/Title/Title";
-import ProfesionalCard from "../../components/ProfesionalCard/ProfesionalCard";
-import ScrollLayout from "../../components/ScrollLayout/ScrollLayout";
+import TextInput from "../components/TextInput/TextInput";
+import HomeLayout from "../components/HomeLayout/HomeLayout";
+import HomeButton from "../components/HomeButton/HomeButton";
+import Title from "../components/Title/Title";
+import ProfesionalCard from "../components/ProfesionalCard/ProfesionalCard";
+import ScrollLayout from "../components/ScrollLayout/ScrollLayout";
 
 const HomePage = () => {
   return (

@@ -1,5 +1,5 @@
-import AccountPage from "./AccountPage/AccountPage";
-import HomePage from "./HomePage/HomePage";
+import AccountPage from "./AccountPage";
+import HomePage from "./HomePage";
 
 export const routes = [
   {
