@@ -31,6 +31,9 @@ export const {
       secondary: "#004346",
       light: "#e9e9e9",
       lighter: "#fafafa",
+      tiffany: "#75DDDD",
+      munsell: "#508991",
+      prussian: "#172A3A",
       success: "$green",
       warning: "$yellow",
 
