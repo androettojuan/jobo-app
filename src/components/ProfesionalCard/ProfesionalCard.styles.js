@@ -21,7 +21,7 @@ export const StyledInfoAndFavorites = styled("div", {
   flexDirection: "row",
   justifyContent: "space-between",
   width: "100%",
-  padding: "14px 16px",
+  padding: "8px 16px",
 });
 
 export const StyledInfoContainer = styled("div", {
