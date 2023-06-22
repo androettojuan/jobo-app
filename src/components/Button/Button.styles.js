@@ -6,6 +6,7 @@ export const StyledButton = styled("button", {
   justifyContent: "center",
   border: "none",
   borderRadius: "24px",
+  cursor: "pointer",
   variants: {
     size: {
       small: {

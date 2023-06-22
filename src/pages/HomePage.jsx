@@ -5,8 +5,11 @@ import HomeButton from "../components/HomeButton/HomeButton";
 import Title from "../components/Title/Title";
 import ProfesionalCard from "../components/ProfesionalCard/ProfesionalCard";
 import ScrollLayout from "../components/ScrollLayout/ScrollLayout";
+import { useNavigate } from "react-router";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <ScrollLayout>
       <ScrollLayout.ScrollPart>
@@ -21,6 +24,7 @@ const HomePage = () => {
                 icon="\img\ingeniero.png"
                 color="prussian"
                 size="lg"
+                onClick={() => navigate("/categories")}
               ></HomeButton>
             </HomeLayout.ButtonLg>
             <HomeLayout.ButtonsSm>

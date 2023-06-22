@@ -5,6 +5,7 @@ export const StyledHomeButton = styled("div", {
   flexDirection: "column",
   alignItems: "center",
   color: "$white",
+  cursor: "pointer",
   variants: {
     size: {
       sm: {

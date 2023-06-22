@@ -6,6 +6,7 @@ export const StyledProfesionalCard = styled("div", {
   shadow: 1,
   borderTopRightRadius: "16px",
   borderBottomRightRadius: "16px",
+  cursor: "pointer",
 });
 
 export const StyledPhoto = styled("img", {
@@ -20,7 +21,7 @@ export const StyledInfoAndFavorites = styled("div", {
   flexDirection: "row",
   justifyContent: "space-between",
   width: "100%",
-  padding: "18px 16px",
+  padding: "14px 16px",
 });
 
 export const StyledInfoContainer = styled("div", {
