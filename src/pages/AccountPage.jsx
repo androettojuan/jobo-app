@@ -7,11 +7,15 @@ import AccountLayout from "../components/AccountLayout/AccoutLayout";
 import Button from "../components/Button/Button";
 import AccountName from "../components/AccountName/AccountName";
 import ScrollLayout from "../components/ScrollLayout/ScrollLayout";
+import Ratings from "../components/Ratings/Ratings";
+import DescriptionAdmin from "../components/DescriptionAdmin/DescriptionAdmin";
 
 const admin = {
   displayName: "Pedro Gomez",
   phone: "351 555 5555",
   address: "Av. Siempreviva 742",
+  description:
+    "Soy un electricista con 8 años de experiencia. Ofrezco soluciones confiables para tus necesidades eléctricas. Contacta conmigo ahora y disfruta de un servicio de calidad",
   photo:
     "data:image/jpeg;base64,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",
 };
@@ -22,6 +26,8 @@ const AccountPage = () => {
   const [displayNameAdmin, setNameAdmin] = useState(admin.displayName);
   const [phone, setPhone] = useState(admin.phone);
   const [address, setAddress] = useState(admin.address);
+  const [profession, setProfession] = useState(admin.profession);
+  const [description, setDescription] = useState(admin.description);
 
   const userIsAdmin = true;
 
@@ -101,17 +107,45 @@ const AccountPage = () => {
               <UserPhoto url={admin.photo} />
               <AccountLayout.Name>
                 {editar ? (
-                  <TextInput
-                    disabled={!editar}
-                    name={displayNameAdmin}
-                    value={displayNameAdmin || ""}
-                    onChange={(e) => setNameAdmin(e.target.value)}
-                    placeholder="Nombre completo"
-                  ></TextInput>
+                  <>
+                    <TextInput
+                      disabled={!editar}
+                      name={displayNameAdmin}
+                      value={displayNameAdmin || ""}
+                      onChange={(e) => setNameAdmin(e.target.value)}
+                      placeholder="Nombre completo"
+                    ></TextInput>
+                    <TextInput
+                      value={profession || ""}
+                      disabled={!editar}
+                      onChange={(e) => setProfession(e.target.value)}
+                      placeholder="Profesion"
+                    ></TextInput>
+                  </>
                 ) : (
-                  <AccountName>{displayNameAdmin}</AccountName>
+                  <>
+                    <AccountName
+                      name={displayNameAdmin}
+                      Profession={profession}
+                      admin
+                    ></AccountName>
+                    <Ratings></Ratings>
+                  </>
                 )}
               </AccountLayout.Name>
+              <AccountLayout.Description>
+                {editar ? (
+                  <TextInput
+                    disabled={!editar}
+                    name={description}
+                    value={description || ""}
+                    onChange={(e) => setDescription(e.target.value)}
+                    placeholder="Descripcion"
+                  ></TextInput>
+                ) : (
+                  <DescriptionAdmin>{description || ""}</DescriptionAdmin>
+                )}
+              </AccountLayout.Description>
               <AccountLayout.Info>
                 <TextInput
                   label={"Email"}
@@ -119,7 +153,7 @@ const AccountPage = () => {
                   value={"adaslsaflmalfma@gmail.com" || ""}
                 ></TextInput>
                 <TextInput
-                  label={"Telefono"}
+                  label={"Teléfono"}
                   value={phone || ""}
                   disabled={!editar}
                   onChange={(e) => setPhone(e.target.value)}

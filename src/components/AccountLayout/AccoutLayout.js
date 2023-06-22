@@ -6,6 +6,8 @@ AccountLayout.Info = StyledAccountInfo;
 
 AccountLayout.Name = StyledAccountName;
 
+AccountLayout.Description = StyledAccountInfo;
+
 AccountLayout.Button = StyledAccountButton;
 
 AccountLayout.BottomBar = StyledAccountBottomBar

@@ -1,8 +1,24 @@
 import React from "react";
-import { StyledAccountName } from "./AccountName.styles";
+import {
+  StyledAccountName,
+  StyledAccountNameContainer,
+  StyledNameAdmin,
+  StyledProfession,
+} from "./AccountName.styles";
 
-const AccountName = ({ children }) => {
-  return <StyledAccountName>{children}</StyledAccountName>;
+const AccountName = ({ name, admin = false, Profession }) => {
+  return (
+    <StyledAccountNameContainer>
+      {admin ? (
+        <>
+          <StyledNameAdmin>{name}</StyledNameAdmin>
+          <StyledProfession>({Profession})</StyledProfession>
+        </>
+      ) : (
+        <StyledAccountName>{name}</StyledAccountName>
+      )}
+    </StyledAccountNameContainer>
+  );
 };
 
 export default AccountName;

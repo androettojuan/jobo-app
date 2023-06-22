@@ -12,6 +12,8 @@ export const StyledAccountName = styled("div", {
   marginBottom: "20px",
 });
 
+export const StyledAccountDescription = styled("div", {});
+
 export const StyledAccountInfo = styled("div", {
   marginBottom: "36px",
 });
