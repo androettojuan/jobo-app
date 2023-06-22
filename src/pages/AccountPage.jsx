@@ -86,7 +86,7 @@ const AccountPage = () => {
                     placeholder="Nombre completo"
                   ></TextInput>
                 ) : (
-                  <AccountName>{displayName}</AccountName>
+                  <AccountName name={displayName}></AccountName>
                 )}
               </AccountLayout.Name>
               <AccountLayout.Info>

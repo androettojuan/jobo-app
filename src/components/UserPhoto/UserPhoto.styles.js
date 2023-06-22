@@ -8,7 +8,7 @@ export const StyledUserPhotoContainer = styled("div", {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  margin: "24px auto",
+  margin: "0 auto 12px auto",
 });
 
 export const StyledUserPhoto = styled("img", {
