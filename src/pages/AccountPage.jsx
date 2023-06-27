@@ -176,6 +176,7 @@ const AccountPage = () => {
                   photo="/img/mariosantos.png"
                   comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed"
                   onClick={() => console.log("click")}
+                  rating={5}
                 ></Comments>
               </AccountLayout.Comments>
               <AccountLayout.Button>

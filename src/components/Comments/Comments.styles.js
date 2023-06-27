@@ -3,7 +3,7 @@ import { styled } from "../../theme/styled";
 export const StyledComments = styled("div", {
   display: "flex",
   shadow: 1,
-  padding: "12px 12px 26px 12px",
+  padding: "12px 12px 28px 12px",
   borderRadius: "12px",
   position: "relative",
 });
@@ -40,10 +40,9 @@ export const StyledCommentsUserText = styled("p", {
 });
 
 export const StyledCommentsUserRating = styled("div", {
-  color: "$yellow",
   position: "absolute",
   top: "8px",
-  right: "6px",
+  right: "8px",
 });
 
 export const StyledCommentsButton = styled("button", {
@@ -53,7 +52,8 @@ export const StyledCommentsButton = styled("button", {
   color: "$primary",
   position: "absolute",
   bottom: "4px",
-  right: "6px",
+  right: "8px",
+  fontSize: "14px",
 });
 
 export const StyledCommentsAdmin = styled("div", {});

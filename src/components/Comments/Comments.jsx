@@ -11,7 +11,61 @@ import {
 } from "./Comments.styles";
 import { AiFillStar } from "react-icons/ai";
 
-const Comments = ({ name, comment, photo, onClick }) => {
+const Comments = ({ name, comment, photo, onClick, rating }) => {
+  const ratingColors = (star) => {
+    if (star === 5) {
+      return (
+        <>
+          <AiFillStar color="#ffc107" />
+          <AiFillStar color="#ffc107" />
+          <AiFillStar color="#ffc107" />
+          <AiFillStar color="#ffc107" />
+          <AiFillStar color="#ffc107" />
+        </>
+      );
+    } else if (star === 4) {
+      return (
+        <>
+          <AiFillStar color="#ffc107" />
+          <AiFillStar color="#ffc107" />
+          <AiFillStar color="#ffc107" />
+          <AiFillStar color="#ffc107" />
+          <AiFillStar color="#e4e5e9" />
+        </>
+      );
+    } else if (star === 3) {
+      return (
+        <>
+          <AiFillStar color="#ffc107" />
+          <AiFillStar color="#ffc107" />
+          <AiFillStar color="#ffc107" />
+          <AiFillStar color="#e4e5e9" />
+          <AiFillStar color="#e4e5e9" />
+        </>
+      );
+    } else if (star === 2) {
+      return (
+        <>
+          <AiFillStar color="#ffc107" />
+          <AiFillStar color="#ffc107" />
+          <AiFillStar color="#e4e5e9" />
+          <AiFillStar color="#e4e5e9" />
+          <AiFillStar color="#e4e5e9" />
+        </>
+      );
+    } else if (star === 1) {
+      return (
+        <>
+          <AiFillStar color="#ffc107" />
+          <AiFillStar color="#e4e5e9" />
+          <AiFillStar color="#e4e5e9" />
+          <AiFillStar color="#e4e5e9" />
+          <AiFillStar color="#e4e5e9" />
+        </>
+      );
+    }
+  };
+
   return (
     <StyledComments>
       <StyledCommentsUser>
@@ -21,11 +75,7 @@ const Comments = ({ name, comment, photo, onClick }) => {
           <StyledCommentsUserText>{comment}</StyledCommentsUserText>
         </StyledCommentsContainerText>
         <StyledCommentsUserRating>
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
-          <AiFillStar />
+          {ratingColors(rating)}
         </StyledCommentsUserRating>
       </StyledCommentsUser>
       <StyledCommentsButton onClick={onClick}>Responder</StyledCommentsButton>
