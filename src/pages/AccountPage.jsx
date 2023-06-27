@@ -9,6 +9,8 @@ import AccountName from "../components/AccountName/AccountName";
 import ScrollLayout from "../components/ScrollLayout/ScrollLayout";
 import Ratings from "../components/Ratings/Ratings";
 import DescriptionAdmin from "../components/DescriptionAdmin/DescriptionAdmin";
+import Comments from "../components/Comments/Comments";
+import Title from "../components/Title/Title";
 
 const admin = {
   displayName: "Pedro Gomez",
@@ -167,6 +169,10 @@ const AccountPage = () => {
                   placeholder="Direccion"
                 ></TextInput>
               </AccountLayout.Info>
+              <AccountLayout.Comments>
+                <Title>Comentarios</Title>
+                <Comments></Comments>
+              </AccountLayout.Comments>
               <AccountLayout.Button>
                 <Button size="large" color="grey">
                   Cerrar sesion

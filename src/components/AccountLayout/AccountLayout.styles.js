@@ -29,3 +29,5 @@ export const StyledAccountBottomBar = styled("div", {
   left: "0",
   right: "0",
 });
+
+export const StyledAccountComments = styled("div", {});
