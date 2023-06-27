@@ -1,17 +1,59 @@
 import { styled } from "../../theme/styled";
 
-export const StyledComments = styled("div", {});
+export const StyledComments = styled("div", {
+  display: "flex",
+  shadow: 1,
+  padding: "12px 12px 26px 12px",
+  borderRadius: "12px",
+  position: "relative",
+});
 
-export const StyledCommentsUser = styled("div", {});
+export const StyledCommentsUser = styled("div", {
+  display: "flex",
+  flexDirection: "row",
+});
 
-export const StyledCommentsUserPhoto = styled("img", {});
+export const StyledCommentsUserPhoto = styled("img", {
+  width: "50px",
+  height: "50px",
+  objectFit: "cover",
+});
 
-export const StyledCommentsUserName = styled("span", {});
+export const StyledCommentsContainerText = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  marginLeft: "12px",
+});
 
-export const StyledCommentsUserText = styled("p", {});
+export const StyledCommentsUserName = styled("span", {
+  fontSize: "16px",
+  fontWeight: "600",
+  marginBottom: "8px",
+});
 
-export const StyledCommentsUserRating = styled("div", {});
+export const StyledCommentsUserText = styled("p", {
+  fontSize: "14px",
+  fontWeight: "400",
+  width: "220px",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+});
 
-export const StyledCommentsButton = styled("button", {});
+export const StyledCommentsUserRating = styled("div", {
+  color: "$yellow",
+  position: "absolute",
+  top: "8px",
+  right: "6px",
+});
+
+export const StyledCommentsButton = styled("button", {
+  border: "none",
+  background: "none",
+  cursor: "pointer",
+  color: "$primary",
+  position: "absolute",
+  bottom: "4px",
+  right: "6px",
+});
 
 export const StyledCommentsAdmin = styled("div", {});

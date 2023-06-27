@@ -171,7 +171,12 @@ const AccountPage = () => {
               </AccountLayout.Info>
               <AccountLayout.Comments>
                 <Title>Comentarios</Title>
-                <Comments></Comments>
+                <Comments
+                  name="Mario Santos"
+                  photo="/img/mariosantos.png"
+                  comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed"
+                  onClick={() => console.log("click")}
+                ></Comments>
               </AccountLayout.Comments>
               <AccountLayout.Button>
                 <Button size="large" color="grey">

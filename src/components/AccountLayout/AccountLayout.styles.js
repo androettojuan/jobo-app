@@ -30,4 +30,9 @@ export const StyledAccountBottomBar = styled("div", {
   right: "0",
 });
 
-export const StyledAccountComments = styled("div", {});
+export const StyledAccountComments = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "16px",
+  marginBottom: "20px",
+});
