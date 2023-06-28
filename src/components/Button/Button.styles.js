@@ -15,7 +15,8 @@ export const StyledButton = styled("button", {
       },
       medium: {
         padding: "10px 20px",
-        fontSize: "14px",
+        fontSize: "16px",
+        fontWeight: "500",
       },
       large: {
         padding: "15px 30px",
@@ -25,6 +26,7 @@ export const StyledButton = styled("button", {
     color: {
       primary: {
         backgroundColor: "$primary",
+        color: "$white",
       },
       secondary: {
         backgroundColor: "$secondary",
