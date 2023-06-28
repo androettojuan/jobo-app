@@ -1,4 +1,4 @@
-import { StyledAccountBottomBar, StyledAccountButton, StyledAccountInfo, StyledAccountLayout, StyledAccountName } from "./AccountLayout.styles";
+import { StyledAccountBottomBar, StyledAccountButton, StyledAccountInfo, StyledAccountLayout, StyledAccountName, StyledAccountSwitch } from "./AccountLayout.styles";
 
 const AccountLayout = StyledAccountLayout;
 
@@ -11,5 +11,7 @@ AccountLayout.Description = StyledAccountInfo;
 AccountLayout.Button = StyledAccountButton;
 
 AccountLayout.BottomBar = StyledAccountBottomBar
+
+AccountLayout.Switch = StyledAccountSwitch
 
 export default AccountLayout;

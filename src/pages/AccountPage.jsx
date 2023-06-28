@@ -9,6 +9,7 @@ import Ratings from "../components/Ratings/Ratings";
 import ScrollLayout from "../components/ScrollLayout/ScrollLayout";
 import TextInput from "../components/TextInput/TextInput";
 import UserPhoto from "../components/UserPhoto/UserPhoto";
+import InputSwitch from "../components/InputSwitch/InputSwitch";
 
 const admin = {
   displayName: "Pedro Gomez",
@@ -167,6 +168,9 @@ const AccountPage = () => {
                   placeholder="Direccion"
                 ></TextInput>
               </AccountLayout.Info>
+              <AccountLayout.Switch>
+                <InputSwitch></InputSwitch>
+              </AccountLayout.Switch>
               <AccountLayout.Button>
                 <Button size="large" color="grey">
                   Cerrar sesion

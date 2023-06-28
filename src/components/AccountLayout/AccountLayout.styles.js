@@ -29,3 +29,7 @@ export const StyledAccountBottomBar = styled("div", {
   left: "0",
   right: "0",
 });
+
+export const StyledAccountSwitch = styled("div", {
+  margin: "20px 0 40px 0",
+});
