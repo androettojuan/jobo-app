@@ -14,6 +14,7 @@ import InputSwitch from "../components/InputSwitch/InputSwitch";
 const admin = {
   displayName: "Pedro Gomez",
   phone: "351 555 5555",
+  profession: "Electricista",
   address: "Av. Siempreviva 742",
   description:
     "Soy un electricista con 8 años de experiencia. Ofrezco soluciones confiables para tus necesidades eléctricas. Contacta conmigo ahora y disfruta de un servicio de calidad",
