@@ -6,6 +6,7 @@ import {
   StyledContainer,
   StyledLabel,
 } from "./BottomBar.styles";
+import { AiOutlineComment } from "react-icons/ai";
 
 const pagesList = [
   {
@@ -13,6 +14,13 @@ const pagesList = [
     page: "/",
     name: "inicio",
     label: "Inicio",
+  },
+  {
+    icon: AiOutlineComment,
+    page: "/comments",
+    name: "comments",
+    admin: true,
+    label: "Comentarios",
   },
   {
     icon: FiUser,

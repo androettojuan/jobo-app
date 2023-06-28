@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { FiCheck, FiEdit3 } from "react-icons/fi";
+import AccountLayout from "../components/AccountLayout/AccoutLayout";
+import AccountName from "../components/AccountName/AccountName";
+import Button from "../components/Button/Button";
+import DescriptionAdmin from "../components/DescriptionAdmin/DescriptionAdmin";
 import Header from "../components/Header/Header";
+import Ratings from "../components/Ratings/Ratings";
+import ScrollLayout from "../components/ScrollLayout/ScrollLayout";
 import TextInput from "../components/TextInput/TextInput";
 import UserPhoto from "../components/UserPhoto/UserPhoto";
-import AccountLayout from "../components/AccountLayout/AccoutLayout";
-import Button from "../components/Button/Button";
-import AccountName from "../components/AccountName/AccountName";
-import ScrollLayout from "../components/ScrollLayout/ScrollLayout";
-import Ratings from "../components/Ratings/Ratings";
-import DescriptionAdmin from "../components/DescriptionAdmin/DescriptionAdmin";
-import Comments from "../components/Comments/Comments";
-import Title from "../components/Title/Title";
 
 const admin = {
   displayName: "Pedro Gomez",
@@ -169,16 +167,6 @@ const AccountPage = () => {
                   placeholder="Direccion"
                 ></TextInput>
               </AccountLayout.Info>
-              <AccountLayout.Comments>
-                <Title>Comentarios</Title>
-                <Comments
-                  name="Mario Santos"
-                  photo="/img/mariosantos.png"
-                  comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed"
-                  onClick={() => console.log("click")}
-                  rating={5}
-                ></Comments>
-              </AccountLayout.Comments>
               <AccountLayout.Button>
                 <Button size="large" color="grey">
                   Cerrar sesion
