@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyledComments,
+  StyledCommentsAdmin,
   StyledCommentsButton,
   StyledCommentsContainerText,
   StyledCommentsUser,
@@ -10,8 +11,11 @@ import {
   StyledCommentsUserText,
 } from "./Comments.styles";
 import { AiFillStar } from "react-icons/ai";
+import Modal from "../Modal/Modal";
 
-const Comments = ({ name, comment, photo, onClick, rating }) => {
+const Comments = ({ name, comment, photo, rating, answer }) => {
+  const [showModal, setShowModal] = useState(false);
+
   const ratingColors = (star) => {
     if (star === 5) {
       return (
@@ -78,7 +82,23 @@ const Comments = ({ name, comment, photo, onClick, rating }) => {
           {ratingColors(rating)}
         </StyledCommentsUserRating>
       </StyledCommentsUser>
-      <StyledCommentsButton onClick={onClick}>Responder</StyledCommentsButton>
+      {!answer ? (
+        <StyledCommentsButton
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
+          Responder
+        </StyledCommentsButton>
+      ) : (
+        <StyledCommentsAdmin></StyledCommentsAdmin>
+      )}
+      <Modal
+        show={showModal}
+        title="Responder"
+        onClose={() => setShowModal(false)}
+        textButton={"Enviar comentario"}
+      ></Modal>
     </StyledComments>
   );
 };
