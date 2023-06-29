@@ -1,11 +1,20 @@
 import { styled } from "../../theme/styled";
+import { FiMoreVertical } from "react-icons/fi";
 
 export const StyledComments = styled("div", {
   display: "flex",
+  flexDirection: "column",
   shadow: 1,
   padding: "12px 12px 28px 12px",
   borderRadius: "12px",
   position: "relative",
+  variants: {
+    answer: {
+      true: {
+        padding: "12px",
+      },
+    },
+  },
 });
 
 export const StyledCommentsUser = styled("div", {
@@ -56,4 +65,48 @@ export const StyledCommentsButton = styled("button", {
   fontSize: "14px",
 });
 
-export const StyledCommentsAdmin = styled("div", {});
+export const StyledCommentsAdmin = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  marginLeft: "24px",
+  marginTop: "20px",
+  position: "relative",
+});
+
+export const StyledCommentsAdminOptionContainer = styled("div", {
+  position: "absolute",
+  top: "0",
+  right: "0",
+});
+
+export const StyledCommentsAdminOptionIcon = styled(FiMoreVertical, {
+  cursor: "pointer",
+  fontSize: "20px",
+});
+
+export const StyledCommentsAdminOptionButtonContainer = styled("div", {
+  display: "none",
+  flexDirection: "column",
+  background: "$light",
+  borderRadius: "12px",
+  padding: "12px",
+  position: "absolute",
+  top: "12px",
+  right: "10px",
+  variants: {
+    show: {
+      true: {
+        display: "flex",
+      },
+    },
+  },
+});
+
+export const StyledCommentsAdminOptionButton = styled("button", {
+  border: "none",
+  background: "none",
+  cursor: "pointer",
+  color: "$dark",
+  fontSize: "14px",
+  fontWeight: "500",
+});

@@ -30,6 +30,10 @@ const CommentsPage = () => {
           comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed"
           onClick={() => console.log("click")}
           rating={5}
+          answer={"asdsadasd"}
+          photoAdmin="/img/medina.png"
+          nameAdmin="Gabriel Medina"
+          commentAdmin="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed"
         ></Comments>
       </CommentsLayout.Comments>
     </CommentsLayout>

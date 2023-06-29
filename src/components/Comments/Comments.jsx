@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import {
   StyledComments,
   StyledCommentsAdmin,
+  StyledCommentsAdminOptionButton,
+  StyledCommentsAdminOptionButtonContainer,
+  StyledCommentsAdminOptionContainer,
+  StyledCommentsAdminOptionIcon,
   StyledCommentsButton,
   StyledCommentsContainerText,
   StyledCommentsUser,
@@ -13,8 +17,18 @@ import {
 import { AiFillStar } from "react-icons/ai";
 import Modal from "../Modal/Modal";
 
-const Comments = ({ name, comment, photo, rating, answer }) => {
+const Comments = ({
+  name,
+  comment,
+  photo,
+  rating,
+  answer,
+  photoAdmin,
+  nameAdmin,
+  commentAdmin,
+}) => {
   const [showModal, setShowModal] = useState(false);
+  const [showOption, setShowOption] = useState(false);
 
   const ratingColors = (star) => {
     if (star === 5) {
@@ -71,7 +85,7 @@ const Comments = ({ name, comment, photo, rating, answer }) => {
   };
 
   return (
-    <StyledComments>
+    <StyledComments answer={answer ? true : false}>
       <StyledCommentsUser>
         <StyledCommentsUserPhoto src={photo} />
         <StyledCommentsContainerText>
@@ -91,7 +105,30 @@ const Comments = ({ name, comment, photo, rating, answer }) => {
           Responder
         </StyledCommentsButton>
       ) : (
-        <StyledCommentsAdmin></StyledCommentsAdmin>
+        <StyledCommentsAdmin>
+          <StyledCommentsUser>
+            <StyledCommentsUserPhoto src={photoAdmin} />
+            <StyledCommentsContainerText>
+              <StyledCommentsUserName>{nameAdmin}</StyledCommentsUserName>
+              <StyledCommentsUserText>{commentAdmin}</StyledCommentsUserText>
+            </StyledCommentsContainerText>
+          </StyledCommentsUser>
+          <StyledCommentsAdminOptionContainer>
+            <StyledCommentsAdminOptionIcon
+              onClick={() => setShowOption(!showOption)}
+            ></StyledCommentsAdminOptionIcon>
+            <StyledCommentsAdminOptionButtonContainer show={showOption}>
+              <StyledCommentsAdminOptionButton
+                onClick={() => {
+                  setShowOption(false);
+                  console.log("eliminar comentario");
+                }}
+              >
+                Eliminar
+              </StyledCommentsAdminOptionButton>
+            </StyledCommentsAdminOptionButtonContainer>
+          </StyledCommentsAdminOptionContainer>
+        </StyledCommentsAdmin>
       )}
       <Modal
         show={showModal}
