@@ -13,9 +13,11 @@ import {
   StyledCommentsUserPhoto,
   StyledCommentsUserRating,
   StyledCommentsUserText,
+  StyledRatingIcon,
+  StyledRatingNumer,
 } from "./Comments.styles";
-import { AiFillStar } from "react-icons/ai";
 import Modal from "../Modal/Modal";
+import Button from "../Button/Button";
 
 const Comments = ({
   name,
@@ -26,6 +28,7 @@ const Comments = ({
   photoAdmin,
   nameAdmin,
   commentAdmin,
+  isAdmin = false,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [showOption, setShowOption] = useState(false);
@@ -34,51 +37,36 @@ const Comments = ({
     if (star === 5) {
       return (
         <>
-          <AiFillStar color="#ffc107" />
-          <AiFillStar color="#ffc107" />
-          <AiFillStar color="#ffc107" />
-          <AiFillStar color="#ffc107" />
-          <AiFillStar color="#ffc107" />
+          <StyledRatingNumer>5</StyledRatingNumer>
+          <StyledRatingIcon />
         </>
       );
     } else if (star === 4) {
       return (
         <>
-          <AiFillStar color="#ffc107" />
-          <AiFillStar color="#ffc107" />
-          <AiFillStar color="#ffc107" />
-          <AiFillStar color="#ffc107" />
-          <AiFillStar color="#e4e5e9" />
+          <StyledRatingNumer>4</StyledRatingNumer>
+          <StyledRatingIcon />
         </>
       );
     } else if (star === 3) {
       return (
         <>
-          <AiFillStar color="#ffc107" />
-          <AiFillStar color="#ffc107" />
-          <AiFillStar color="#ffc107" />
-          <AiFillStar color="#e4e5e9" />
-          <AiFillStar color="#e4e5e9" />
+          <StyledRatingNumer>3</StyledRatingNumer>
+          <StyledRatingIcon />
         </>
       );
     } else if (star === 2) {
       return (
         <>
-          <AiFillStar color="#ffc107" />
-          <AiFillStar color="#ffc107" />
-          <AiFillStar color="#e4e5e9" />
-          <AiFillStar color="#e4e5e9" />
-          <AiFillStar color="#e4e5e9" />
+          <StyledRatingNumer>2</StyledRatingNumer>
+          <StyledRatingIcon />
         </>
       );
     } else if (star === 1) {
       return (
         <>
-          <AiFillStar color="#ffc107" />
-          <AiFillStar color="#e4e5e9" />
-          <AiFillStar color="#e4e5e9" />
-          <AiFillStar color="#e4e5e9" />
-          <AiFillStar color="#e4e5e9" />
+          <StyledRatingNumer>1</StyledRatingNumer>
+          <StyledRatingIcon />
         </>
       );
     }
@@ -96,40 +84,42 @@ const Comments = ({
           {ratingColors(rating)}
         </StyledCommentsUserRating>
       </StyledCommentsUser>
-      {!answer ? (
-        <StyledCommentsButton
-          onClick={() => {
-            setShowModal(true);
-          }}
-        >
-          Responder
-        </StyledCommentsButton>
-      ) : (
-        <StyledCommentsAdmin>
-          <StyledCommentsUser>
-            <StyledCommentsUserPhoto src={photoAdmin} />
-            <StyledCommentsContainerText>
-              <StyledCommentsUserName>{nameAdmin}</StyledCommentsUserName>
-              <StyledCommentsUserText>{commentAdmin}</StyledCommentsUserText>
-            </StyledCommentsContainerText>
-          </StyledCommentsUser>
-          <StyledCommentsAdminOptionContainer>
-            <StyledCommentsAdminOptionIcon
-              onClick={() => setShowOption(!showOption)}
-            ></StyledCommentsAdminOptionIcon>
-            <StyledCommentsAdminOptionButtonContainer show={showOption}>
-              <StyledCommentsAdminOptionButton
-                onClick={() => {
-                  setShowOption(false);
-                  console.log("eliminar comentario");
-                }}
-              >
-                Eliminar
-              </StyledCommentsAdminOptionButton>
-            </StyledCommentsAdminOptionButtonContainer>
-          </StyledCommentsAdminOptionContainer>
-        </StyledCommentsAdmin>
-      )}
+      {!isAdmin && <StyledCommentsButton>Eliminar</StyledCommentsButton>}
+      {isAdmin &&
+        (!answer ? (
+          <StyledCommentsButton
+            onClick={() => {
+              setShowModal(true);
+            }}
+          >
+            Responder
+          </StyledCommentsButton>
+        ) : (
+          <StyledCommentsAdmin>
+            <StyledCommentsUser>
+              <StyledCommentsUserPhoto src={photoAdmin} />
+              <StyledCommentsContainerText>
+                <StyledCommentsUserName>{nameAdmin}</StyledCommentsUserName>
+                <StyledCommentsUserText>{commentAdmin}</StyledCommentsUserText>
+              </StyledCommentsContainerText>
+            </StyledCommentsUser>
+            <StyledCommentsAdminOptionContainer>
+              <StyledCommentsAdminOptionIcon
+                onClick={() => setShowOption(!showOption)}
+              ></StyledCommentsAdminOptionIcon>
+              <StyledCommentsAdminOptionButtonContainer show={showOption}>
+                <StyledCommentsAdminOptionButton
+                  onClick={() => {
+                    setShowOption(false);
+                    console.log("eliminar comentario");
+                  }}
+                >
+                  Eliminar
+                </StyledCommentsAdminOptionButton>
+              </StyledCommentsAdminOptionButtonContainer>
+            </StyledCommentsAdminOptionContainer>
+          </StyledCommentsAdmin>
+        ))}
       <Modal
         show={showModal}
         title="Responder"

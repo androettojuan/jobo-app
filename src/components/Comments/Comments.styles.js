@@ -1,3 +1,4 @@
+import { AiFillStar } from "react-icons/ai";
 import { styled } from "../../theme/styled";
 import { FiMoreVertical } from "react-icons/fi";
 
@@ -52,6 +53,20 @@ export const StyledCommentsUserRating = styled("div", {
   position: "absolute",
   top: "8px",
   right: "8px",
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "center",
+});
+
+export const StyledRatingIcon = styled(AiFillStar, {
+  color: "$yellow",
+  fontSize: "18px",
+});
+
+export const StyledRatingNumer = styled("span", {
+  fontSize: "16px",
+  fontWeight: "500",
 });
 
 export const StyledCommentsButton = styled("button", {

@@ -31,7 +31,7 @@ const AccountPage = () => {
   const [profession, setProfession] = useState(admin.profession);
   const [description, setDescription] = useState(admin.description);
 
-  const userIsAdmin = true;
+  const userIsAdmin = false;
 
   const iconSelect = () => {
     if (editar === false) {
