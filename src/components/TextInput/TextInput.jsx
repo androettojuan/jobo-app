@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  StyledButtonCopy,
   StyledInputContainer,
   StyledLabel,
   StyledLoadingIcon,
@@ -16,6 +17,7 @@ const TextInput = ({
   placeholder,
   label,
   disabled,
+  copy,
 }) => {
   return (
     <StyledInputContainer>
@@ -30,6 +32,13 @@ const TextInput = ({
         />
         {search && !loading && <StyledSearchIcon />}
         {loading && <StyledLoadingIcon />}
+        {copy && (
+          <StyledButtonCopy
+            onClick={() => {
+              navigator.clipboard.writeText(value);
+            }}
+          />
+        )}
       </StyledLabel>
     </StyledInputContainer>
   );

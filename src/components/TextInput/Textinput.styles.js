@@ -1,6 +1,7 @@
 import { keyframes, styled } from "../../theme/styled";
 import { FiSearch } from "react-icons/fi";
 import { AiOutlineLoading3Quarters as LoadIcon } from "react-icons/ai";
+import { VscCopy } from "react-icons/vsc";
 
 const giro = keyframes({
   "0%": { transform: "rotate(0deg)" },
@@ -9,7 +10,7 @@ const giro = keyframes({
 
 const iconStyles = {
   position: "absolute",
-  top: 14,
+  top: 32,
   right: 14,
   zIndex: 10,
   width: 20,
@@ -26,6 +27,17 @@ export const StyledLoadingIcon = styled(LoadIcon, {
   animationDuration: "1s",
   animationIterationCount: "infinite",
   animationTimingFunction: "linear",
+});
+
+export const StyledButtonCopy = styled(VscCopy, {
+  position: "absolute",
+  top: 30,
+  right: 14,
+  zIndex: 10,
+  width: 24,
+  height: 24,
+  color: "$dark",
+  cursor: "pointer",
 });
 
 export const StyledTextInput = styled("input", {
