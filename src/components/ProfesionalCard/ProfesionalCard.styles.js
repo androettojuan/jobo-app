@@ -4,8 +4,7 @@ export const StyledProfesionalCard = styled("div", {
   display: "flex",
   flexDirection: "row",
   shadow: 1,
-  borderTopRightRadius: "16px",
-  borderBottomRightRadius: "16px",
+  borderRadius: "16px",
   cursor: "pointer",
 });
 

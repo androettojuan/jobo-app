@@ -14,19 +14,20 @@ const pagesList = [
     page: "/",
     name: "inicio",
     label: "Inicio",
+    show: "not-admin",
   },
   {
     icon: AiOutlineComment,
     page: "/comments",
     name: "comments",
-    admin: true,
+    show: "admin",
     label: "Comentarios",
   },
   {
     icon: FiUser,
     page: "/account",
     name: "cuenta",
-    show: "logged",
+    show: "not-admin",
     label: "Mi cuenta",
   },
 ];
@@ -38,22 +39,29 @@ const BottomBar = () => {
 
   return (
     <StyledContainer>
-      {pagesList.map(({ icon: IconComponent, page, name, label, onClick }) => (
-        <StyledBottomBarIcon
-          selected={page && page === currentPage?.page}
-          key={name}
-          onClick={async () => {
-            if (onClick) {
-              onClick();
-            } else {
-              navigate(page);
-            }
-          }}
-        >
-          <IconComponent />
-          <StyledLabel>{label}</StyledLabel>
-        </StyledBottomBarIcon>
-      ))}
+      {pagesList
+        .filter((page) => {
+          if (page.show === "admin") {
+            return false;
+          }
+          return true;
+        })
+        .map(({ icon: IconComponent, page, name, label, onClick }) => (
+          <StyledBottomBarIcon
+            selected={page && page === currentPage?.page}
+            key={name}
+            onClick={async () => {
+              if (onClick) {
+                onClick();
+              } else {
+                navigate(page);
+              }
+            }}
+          >
+            <IconComponent />
+            <StyledLabel>{label}</StyledLabel>
+          </StyledBottomBarIcon>
+        ))}
     </StyledContainer>
   );
 };

@@ -14,11 +14,11 @@ import {
 } from "./ProfesionalCard.styles";
 import { AiFillHeart, AiFillStar, AiOutlineHeart } from "react-icons/ai";
 
-const ProfesionalCard = ({ name, profession, photo }) => {
+const ProfesionalCard = ({ name, profession, photo, onClick }) => {
   const isFavorite = true;
 
   return (
-    <StyledProfesionalCard>
+    <StyledProfesionalCard onClick={onClick}>
       <StyledPhoto src={photo} alt="foto profesional" />
       <StyledInfoAndFavorites>
         <StyledInfoContainer>
