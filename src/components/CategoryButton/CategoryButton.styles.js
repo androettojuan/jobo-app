@@ -7,15 +7,14 @@ export const StyledCategoryButton = styled("div", {
     justifyContent: "center",
     shadow:1,
     borderRadius: "16px",
-    padding: "8px",
-    backgroundColor: "$primary",
-    color: "$white",
+    padding: "4px",
     margin: "8px",
     cursor: "pointer",
+    border: "3px solid $primary",
 });
 
-export const StyledCategoryIcon = styled("div", {
-    fontSize: "28px",
+export const StyledCategoryIcon = styled("img", {
+    width: "28px",
 });
 
 export const StyledCategoryProfession = styled("span", {

@@ -10,7 +10,7 @@ const giro = keyframes({
 
 const iconStyles = {
   position: "absolute",
-  top: 32,
+  top: 14,
   right: 14,
   zIndex: 10,
   width: 20,

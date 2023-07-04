@@ -8,7 +8,7 @@ import {
 const CategoryButton = ({ onClick, profession, icon }) => {
   return (
     <StyledCategoryButton onClick={onClick}>
-      <StyledCategoryIcon>{icon}</StyledCategoryIcon>
+      <StyledCategoryIcon src={icon} alt="icon"/>
       <StyledCategoryProfession>{profession}</StyledCategoryProfession>
     </StyledCategoryButton>
   );
