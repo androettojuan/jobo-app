@@ -17,7 +17,6 @@ import {
   StyledRatingNumer,
 } from "./Comments.styles";
 import Modal from "../Modal/Modal";
-import Button from "../Button/Button";
 
 const Comments = ({
   name,
