@@ -19,15 +19,15 @@ export const routes = [
     component: CategoryPage,
   },
   {
-    path: "/profession/:categoryId",
-    component: ProfessionPage,
-  },
-  {
     path: "/comments",
     component: CommentsPage,
   },
   {
     path: "/professional",
     component: ProfessionalPage,
+  },
+  {
+    path: "/categories/:id",
+    component: ProfessionPage,
   },
 ];
