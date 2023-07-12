@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ProfessionalLayout from "../components/ProfessionalLayout/ProfessionalLayout";
+import ProfesionalLayout from "../components/ProfesionalLayout/ProfesionalLayout";
 import AccountName from "../components/AccountName/AccountName";
 import Ratings from "../components/Ratings/Ratings";
 import DescriptionAdmin from "../components/DescriptionAdmin/DescriptionAdmin";
@@ -8,7 +8,7 @@ import UserPhoto from "../components/UserPhoto/UserPhoto";
 import ScrollLayout from "../components/ScrollLayout/ScrollLayout";
 import Comments from "../components/Comments/Comments";
 import Button from "../components/Button/Button";
-import { StyledProfessionalButtonComment } from "../components/ProfessionalLayout/ProfessionalLayout.styles";
+import { StyledProfesionalButtonComment } from "../components/ProfesionalLayout/ProfesionalLayout.styles";
 import Modal from "../components/Modal/Modal";
 import Title from "../components/Title/Title";
 
@@ -29,39 +29,39 @@ const comments = [
       },
 ];
 
-const ProfessionalPage = () => {
+const ProfesionalPage = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <ScrollLayout>
       <ScrollLayout.ScrollPart>
-        <ProfessionalLayout>
+        <ProfesionalLayout>
           <UserPhoto url={"/img/mariosantos.png"} />
-          <ProfessionalLayout.Name>
+          <ProfesionalLayout.Name>
             <AccountName
               name={"Juan Manuel Androetto"}
               Profession={"Desarrollador Web"}
               admin
             ></AccountName>
             <Ratings></Ratings>
-          </ProfessionalLayout.Name>
-          <ProfessionalLayout.Description>
+          </ProfesionalLayout.Name>
+          <ProfesionalLayout.Description>
             <DescriptionAdmin>
               {
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam"
               }
             </DescriptionAdmin>
-          </ProfessionalLayout.Description>
-          <ProfessionalLayout.Info>
+          </ProfesionalLayout.Description>
+          <ProfesionalLayout.Info>
             <TextInput
               label={"Teléfono"}
               value={"+548451216161651"}
               disabled={true}
               copy={true}
             ></TextInput>
-          </ProfessionalLayout.Info>
-          <ProfessionalLayout.Comments>
-            <StyledProfessionalButtonComment>
+          </ProfesionalLayout.Info>
+          <ProfesionalLayout.Comments>
+            <StyledProfesionalButtonComment>
               <Button
                 size={"medium"}
                 color={"primary"}
@@ -69,7 +69,7 @@ const ProfessionalPage = () => {
               >
                 Escribe un comentario
               </Button>
-            </StyledProfessionalButtonComment>
+            </StyledProfesionalButtonComment>
             <Title>Comentarios</Title>
             {comments.length > 0 ? (
               comments.map((comment) => (
@@ -84,17 +84,17 @@ const ProfessionalPage = () => {
             ) : (
               <p>No hay comentarios</p>
             )}
-          </ProfessionalLayout.Comments>
+          </ProfesionalLayout.Comments>
           <Modal
             show={showModal}
             title="Escribe un comentario"
             textButton="Comentar"
             onClose={() => setShowModal(false)}
           />
-        </ProfessionalLayout>
+        </ProfesionalLayout>
       </ScrollLayout.ScrollPart>
     </ScrollLayout>
   );
 };
 
-export default ProfessionalPage;
+export default ProfesionalPage;

@@ -1,32 +1,32 @@
 import { styled } from "../../theme/styled";
 
-export const StyledProfessionalLayout = styled("div", {
+export const StyledProfesionalLayout = styled("div", {
   display: "flex",
   flexDirection: "column",
   padding: "20px",
   position: "relative",
 });
 
-export const StyledProfessionalName = styled("div", {
+export const StyledProfesionalName = styled("div", {
   margin: "0 auto",
   marginBottom: "20px",
 });
 
-export const StyledProfessionalDescription = styled("div", {
+export const StyledProfesionalDescription = styled("div", {
   textAlign: "center",
   marginBottom: "20px",
 });
 
-export const StyledProfessionalInfo = styled("div", {
+export const StyledProfesionalInfo = styled("div", {
   marginBottom: "36px",
 });
 
-export const StyledProfessionalComments = styled("div", {
+export const StyledProfesionalComments = styled("div", {
     display: "flex",
     flexDirection: "column",
     gap: "14px",
 });
 
-export const StyledProfessionalButtonComment = styled("div", {
+export const StyledProfesionalButtonComment = styled("div", {
     marginBottom: "20px",
 });

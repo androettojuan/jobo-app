@@ -60,13 +60,13 @@ const HomePage = () => {
           <HomeLayout.Favorites>
             <ProfesionalCard
               name="Juan Manuel Androetto"
-              onClick={() => navigate("/professional")}
+              onClick={() => navigate("/profesional")}
               profession="Electricista"
               photo="/img/plomero-foto.jpg"
             />
             <ProfesionalCard
               name="Juan Manuel Androetto"
-              onClick={() => navigate("/professional")}
+              onClick={() => navigate("/profesional")}
               profession="Electricista"
               photo="/img/plomero-foto.jpg"
             />

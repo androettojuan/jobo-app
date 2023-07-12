@@ -3,7 +3,7 @@ import CategoryPage from "./CategoryPage";
 import CommentsPage from "./CommentsPage";
 import HomePage from "./HomePage";
 import ProfessionPage from "./ProfessionPage";
-import ProfessionalPage from "./ProfessionalPage";
+import ProfesionalPage from "./ProfesionalPage";
 
 export const routes = [
   {
@@ -23,8 +23,8 @@ export const routes = [
     component: CommentsPage,
   },
   {
-    path: "/professional",
-    component: ProfessionalPage,
+    path: "/profesional",
+    component: ProfesionalPage,
   },
   {
     path: "/categories/:id",
