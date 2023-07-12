@@ -112,6 +112,7 @@ const ProfesionalPage = () => {
                   photo={comment.photo}
                   comment={comment.comment}
                   rating={comment.rating}
+                  key={comment.name}
                   onClick={() => console.log("click")}
                 ></Comments>
               ))
