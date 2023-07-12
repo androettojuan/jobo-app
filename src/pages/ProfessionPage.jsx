@@ -3,11 +3,13 @@ import ProfessionLayout from "../components/ProfessionLayout/ProfessionLayout";
 import ProfesionalCard from "../components/ProfesionalCard/ProfesionalCard";
 import { useParams } from "react-router";
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
+import { useNavigate } from "react-router";
 
 const ProfessionPage = () => {
   const { id } = useParams();
   const [workers, setWorkers] = useState([]);
   const [jobs, setJobs] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getWorkers() {
@@ -47,6 +49,9 @@ const ProfessionPage = () => {
               lastname={worker.lastname}
               photo={worker.photo}
               profession={jobs.find((job) => job.id === worker.job_id).title}
+              onClick={() =>
+                navigate(`/categories/${id}/profesional/${worker.id}}`)
+              }
             />
           ))}
       </ProfessionLayout.ContainerWorkers>

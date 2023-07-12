@@ -23,7 +23,7 @@ export const routes = [
     component: CommentsPage,
   },
   {
-    path: "/profesional",
+    path: "/categories/:CategoryId/profesional/:id",
     component: ProfesionalPage,
   },
   {

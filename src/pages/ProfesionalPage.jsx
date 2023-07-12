@@ -11,22 +11,24 @@ import Button from "../components/Button/Button";
 import { StyledProfesionalButtonComment } from "../components/ProfesionalLayout/ProfesionalLayout.styles";
 import Modal from "../components/Modal/Modal";
 import Title from "../components/Title/Title";
+import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
+import Container from "../components/Container/Container";
 
 const comments = [
-    {
-        name: "Juan Androetto",
-        photo: "/img/mariosantos.png",
-        rating: 5,
-        comment:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam",
-      },
-      {
-        name: "Juan Manuel Androetto",
-        photo: "/img/mariosantos.png",
-        rating: 2,
-        comment:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam",
-      },
+  {
+    name: "Juan Androetto",
+    photo: "/img/mariosantos.png",
+    rating: 5,
+    comment:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam",
+  },
+  {
+    name: "Juan Manuel Androetto",
+    photo: "/img/mariosantos.png",
+    rating: 2,
+    comment:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam",
+  },
 ];
 
 const ProfesionalPage = () => {
@@ -34,6 +36,16 @@ const ProfesionalPage = () => {
 
   return (
     <ScrollLayout>
+      <ScrollLayout.FixedPart>
+        <Container>
+          <Breadcrumb
+            pages={[
+              { label: "Categorias", url: "/categories", name: "categories" },
+              { label: "Profesional", name: "profession" },
+            ]}
+          ></Breadcrumb>
+        </Container>
+      </ScrollLayout.FixedPart>
       <ScrollLayout.ScrollPart>
         <ProfesionalLayout>
           <UserPhoto url={"/img/mariosantos.png"} />
