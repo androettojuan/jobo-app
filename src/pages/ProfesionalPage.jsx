@@ -62,7 +62,11 @@ const ProfesionalPage = () => {
         <Container>
           <Breadcrumb
             pages={[
-              { label: "Categorias", url: "/categories", name: "categories" },
+              {
+                label: `${jobs?.find((job) => job.id === user.job_id)?.title}`,
+                url: `/categories/${user.job_id}`,
+                name: "profesionals",
+              },
               { label: "Profesional", name: "profession" },
             ]}
           ></Breadcrumb>
@@ -80,11 +84,7 @@ const ProfesionalPage = () => {
             <Ratings></Ratings>
           </ProfesionalLayout.Name>
           <ProfesionalLayout.Description>
-            <DescriptionAdmin>
-              {
-                user.description
-              }
-            </DescriptionAdmin>
+            <DescriptionAdmin>{user.description}</DescriptionAdmin>
           </ProfesionalLayout.Description>
           <ProfesionalLayout.Info>
             <TextInput

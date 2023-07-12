@@ -33,24 +33,28 @@ const HomePage = () => {
                 icon="\img\gas.png"
                 color="primary"
                 size="sm"
+                onClick={() => navigate("/categories/2")}
               />
               <HomeButton
                 text="Plomero"
                 icon="\img\plomero.png"
                 color="secondary"
                 size="sm"
+                onClick={() => navigate("/categories/1")}
               />
               <HomeButton
                 text="Refrigeración"
                 icon="\img\refrigeracion.png"
                 color="munsell"
                 size="sm"
+                onClick={() => navigate("/categories/16")}
               />
               <HomeButton
                 text="Electricista"
                 icon="\img\electricidad.png"
                 color="tiffany"
                 size="sm"
+                onClick={() => navigate("/categories/4")}
               />
             </HomeLayout.ButtonsSm>
           </HomeLayout.Buttons>
@@ -60,13 +64,13 @@ const HomePage = () => {
           <HomeLayout.Favorites>
             <ProfesionalCard
               name="Juan Manuel Androetto"
-              onClick={() => navigate("/profesional")}
+              onClick={() => navigate(`/categories/1/profesional/1}`)}
               profession="Electricista"
               photo="/img/plomero-foto.jpg"
             />
             <ProfesionalCard
               name="Juan Manuel Androetto"
-              onClick={() => navigate("/profesional")}
+              onClick={() => navigate(`/categories/1/profesional/1}`)}
               profession="Electricista"
               photo="/img/plomero-foto.jpg"
             />
