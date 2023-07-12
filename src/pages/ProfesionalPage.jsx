@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProfesionalLayout from "../components/ProfesionalLayout/ProfesionalLayout";
 import AccountName from "../components/AccountName/AccountName";
 import Ratings from "../components/Ratings/Ratings";
@@ -13,6 +13,7 @@ import Modal from "../components/Modal/Modal";
 import Title from "../components/Title/Title";
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 import Container from "../components/Container/Container";
+import { useParams } from "react-router";
 
 const comments = [
   {
@@ -32,7 +33,28 @@ const comments = [
 ];
 
 const ProfesionalPage = () => {
+  const { id } = useParams();
+  const userId = id;
+  const [user, setUser] = useState([]);
+  const [jobs, setJobs] = useState([]);
   const [showModal, setShowModal] = useState(false);
+
+  async function getUser(userId) {
+    const response = await fetch("http://localhost:8080/user/" + userId);
+    const data = await response.json();
+    setUser(data[0]);
+  }
+
+  async function getJobs() {
+    const response = await fetch("http://localhost:8080/jobs");
+    const data = await response.json();
+    setJobs(data);
+  }
+
+  useEffect(() => {
+    getUser(userId);
+    getJobs();
+  }, [userId]);
 
   return (
     <ScrollLayout>
@@ -48,11 +70,11 @@ const ProfesionalPage = () => {
       </ScrollLayout.FixedPart>
       <ScrollLayout.ScrollPart>
         <ProfesionalLayout>
-          <UserPhoto url={"/img/mariosantos.png"} />
+          <UserPhoto url={user.photo} />
           <ProfesionalLayout.Name>
             <AccountName
-              name={"Juan Manuel Androetto"}
-              Profession={"Desarrollador Web"}
+              name={user?.name + " " + user?.lastname}
+              Profession={jobs.find((job) => job.id === user.job_id)?.title}
               admin
             ></AccountName>
             <Ratings></Ratings>
@@ -60,14 +82,14 @@ const ProfesionalPage = () => {
           <ProfesionalLayout.Description>
             <DescriptionAdmin>
               {
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam"
+                user.description
               }
             </DescriptionAdmin>
           </ProfesionalLayout.Description>
           <ProfesionalLayout.Info>
             <TextInput
               label={"Teléfono"}
-              value={"+548451216161651"}
+              value={user.phone}
               disabled={true}
               copy={true}
             ></TextInput>
