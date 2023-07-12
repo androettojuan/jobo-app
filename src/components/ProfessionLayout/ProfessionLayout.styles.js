@@ -1,7 +1,7 @@
 import { styled } from "../../theme/styled";
 
-export const StyledProfessionLayout = styled("div", {})
+export const StyledProfessionLayout = styled("div", {
+    padding: "0 16px",
+});
 
-export const StyledProfessionTitle = styled("h1", {})
-
-export const StyledProfessionContainerWorkers = styled("div", {})
+export const StyledProfessionContainerWorkers = styled("div", {});

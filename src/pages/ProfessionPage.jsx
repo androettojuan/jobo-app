@@ -2,17 +2,22 @@ import React, { useEffect, useState } from "react";
 import ProfessionLayout from "../components/ProfessionLayout/ProfessionLayout";
 import ProfesionalCard from "../components/ProfesionalCard/ProfesionalCard";
 import { useParams } from "react-router";
+import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 
 const ProfessionPage = () => {
   const { id } = useParams();
   const [workers, setWorkers] = useState([]);
   const [jobs, setJobs] = useState([]);
 
-  async function getWorkers() {
-    const response = await fetch("http://localhost:8080/workers/1");
-    const data = await response.json();
-    setWorkers(data);
-  }
+  useEffect(() => {
+    async function getWorkers() {
+      const response = await fetch("http://localhost:8080/workers/" + id);
+      const data = await response.json();
+      setWorkers(data);
+    }
+    getJobs();
+    getWorkers();
+  }, [id]);
 
   async function getJobs() {
     const response = await fetch("http://localhost:8080/jobs");
@@ -20,26 +25,30 @@ const ProfessionPage = () => {
     setJobs(data);
   }
 
-  useEffect(() => {
-    getJobs();
-    getWorkers();
-  }, []);
+  const nameProfession = () => {
+    return jobs?.find((job) => job.id === parseInt(id))?.title;
+  };
 
   return (
     <ProfessionLayout>
-      <ProfessionLayout.Title>
-        {jobs?.find((job) => job.id === parseInt(id))?.title}
-      </ProfessionLayout.Title>
+      <Breadcrumb
+        pages={[
+          { label: "Categorias", url: "/categories", name: "categories" },
+          { label: nameProfession(), name: "profession" },
+        ]}
+      ></Breadcrumb>
       <ProfessionLayout.ContainerWorkers>
-        {workers.map((worker) => (
-          <ProfessionLayout.ContainerWorkers key={worker.id}>
+        {workers
+          .filter((worker) => worker.job_id === parseInt(id))
+          .map((worker) => (
             <ProfesionalCard
-              name={worker.name}
-              profession={jobs.find((job) => job.id === worker.job_id).title}
+              key={worker.id}
+              name={worker.name + " " + worker.lastname}
+              lastname={worker.lastname}
               photo={worker.photo}
-            ></ProfesionalCard>
-          </ProfessionLayout.ContainerWorkers>
-        ))}
+              profession={jobs.find((job) => job.id === worker.job_id).title}
+            />
+          ))}
       </ProfessionLayout.ContainerWorkers>
     </ProfessionLayout>
   );

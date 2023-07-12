@@ -11,3 +11,12 @@ yarn
 yarn start
 
 ```
+
+## server
+
+```
+yarn dev
+
+```
+
+
