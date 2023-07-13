@@ -15,34 +15,31 @@ import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 import Container from "../components/Container/Container";
 import { useParams } from "react-router";
 
-const comments = [
-  {
-    name: "Juan Androetto",
-    photo: "/img/mariosantos.png",
-    rating: 5,
-    comment:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam",
-  },
-  {
-    name: "Juan Manuel Androetto",
-    photo: "/img/mariosantos.png",
-    rating: 2,
-    comment:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam",
-  },
-];
-
 const ProfesionalPage = () => {
   const { id } = useParams();
   const userId = id;
-  const [user, setUser] = useState([]);
+  const [profesional, setProfesional] = useState([]);
+  const [users, setUsers] = useState([]);
   const [jobs, setJobs] = useState([]);
+  const [comments, setComments] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const userAdminId = 2;
+
+  const userSelected = (comment) =>
+    users?.find((user) => user.id === comment.user_id);
+  const userAdminSelected = (comment) =>
+    users?.find((user) => user.id === comment.user_admin_id);
 
   async function getUser(userId) {
     const response = await fetch("http://localhost:8080/user/" + userId);
     const data = await response.json();
-    setUser(data[0]);
+    setProfesional(data[0]);
+  }
+
+  async function getUsers() {
+    const response = await fetch("http://localhost:8080/users");
+    const data = await response.json();
+    setUsers(data);
   }
 
   async function getJobs() {
@@ -52,8 +49,17 @@ const ProfesionalPage = () => {
   }
 
   useEffect(() => {
+    async function getComments(userAdminId) {
+      const response = await fetch(
+        "http://localhost:8080/comments/" + userAdminId
+      );
+      const data = await response.json();
+      setComments(data);
+    }
     getUser(userId);
     getJobs();
+    getComments(userAdminId);
+    getUsers();
   }, [userId]);
 
   return (
@@ -63,8 +69,10 @@ const ProfesionalPage = () => {
           <Breadcrumb
             pages={[
               {
-                label: `${jobs?.find((job) => job.id === user.job_id)?.title}`,
-                url: `/categories/${user.job_id}`,
+                label: `${
+                  jobs?.find((job) => job.id === profesional.job_id)?.title
+                }`,
+                url: `/categories/${profesional.job_id}`,
                 name: "profesionals",
               },
               { label: "Profesional", name: "profession" },
@@ -74,22 +82,24 @@ const ProfesionalPage = () => {
       </ScrollLayout.FixedPart>
       <ScrollLayout.ScrollPart>
         <ProfesionalLayout>
-          <UserPhoto url={user.photo} />
+          <UserPhoto url={profesional?.photo} />
           <ProfesionalLayout.Name>
             <AccountName
-              name={user?.name + " " + user?.lastname}
-              Profession={jobs.find((job) => job.id === user.job_id)?.title}
+              name={profesional?.name + " " + profesional?.lastname}
+              Profession={
+                jobs.find((job) => job.id === profesional.job_id)?.title
+              }
               admin
             ></AccountName>
             <Ratings></Ratings>
           </ProfesionalLayout.Name>
           <ProfesionalLayout.Description>
-            <DescriptionAdmin>{user.description}</DescriptionAdmin>
+            <DescriptionAdmin>{profesional?.description}</DescriptionAdmin>
           </ProfesionalLayout.Description>
           <ProfesionalLayout.Info>
             <TextInput
               label={"Teléfono"}
-              value={user.phone}
+              value={profesional?.phone}
               disabled={true}
               copy={true}
             ></TextInput>
@@ -105,14 +115,22 @@ const ProfesionalPage = () => {
               </Button>
             </StyledProfesionalButtonComment>
             <Title>Comentarios</Title>
-            {comments.length > 0 ? (
+            {comments?.length > 0 ? (
               comments.map((comment) => (
                 <Comments
-                  name={comment.name}
-                  photo={comment.photo}
-                  comment={comment.comment}
-                  rating={comment.rating}
-                  key={comment.name}
+                  key={userSelected(comment)?.name}
+                  name={
+                    userSelected(comment)?.name +
+                    " " +
+                    userSelected(comment)?.lastname
+                  }
+                  photo={userSelected(comment)?.photo}
+                  comment={comment?.comment}
+                  rating={comment?.rating}
+                  photoAdmin={userAdminSelected(comment)?.photo}
+                  nameAdmin={userAdminSelected(comment)?.name}
+                  commentAdmin={comment?.comment_admin}
+                  answer={true}
                   onClick={() => console.log("click")}
                 ></Comments>
               ))

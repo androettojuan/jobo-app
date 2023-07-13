@@ -27,7 +27,7 @@ const Comments = ({
   photoAdmin,
   nameAdmin,
   commentAdmin,
-  isAdmin = false,
+  isAdmin = true,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [showOption, setShowOption] = useState(false);
