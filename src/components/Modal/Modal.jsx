@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyledModal,
   StyledModalBody,
@@ -12,9 +12,7 @@ import {
 } from "./Modal.styles";
 import Button from "../Button/Button";
 
-const Modal = ({ show, title, onClose, textButton }) => {
-  const [comment, setComment] = useState("");
-
+const Modal = ({ show, title, onClose, textButton, onChange, comment, onClick }) => {
   return (
     <StyledModal show={show}>
       <StyledModalFondo onClick={onClose}></StyledModalFondo>
@@ -28,11 +26,11 @@ const Modal = ({ show, title, onClose, textButton }) => {
             type="text"
             placeholder="Escribe tu comentario"
             value={comment}
-            onChange={(e) => setComment(e.target.value)}
+            onChange={onChange}
           />
         </StyledModalBody>
         <StyledModalFooter>
-          <Button size={"medium"} color={"primary"}>
+          <Button size={"medium"} color={"primary"} onClick={onClick}>
             {textButton}
           </Button>
         </StyledModalFooter>

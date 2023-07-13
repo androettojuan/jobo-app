@@ -24,6 +24,8 @@ const ProfesionalPage = () => {
   const [comments, setComments] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const userAdminId = 2;
+  const [comment, setComment] = useState("");
+  const [answer, setAnswer] = useState(false);
 
   const userSelected = (comment) =>
     users?.find((user) => user.id === comment.user_id);
@@ -46,6 +48,23 @@ const ProfesionalPage = () => {
     const response = await fetch("http://localhost:8080/jobs");
     const data = await response.json();
     setJobs(data);
+  }
+
+  async function createComment(userId, userAdminId, rating, comment) {
+    const response = await fetch("http://localhost:8080/comments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: userId,
+        userAdminId: userAdminId,
+        rating: rating,
+        comment: comment,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
   }
 
   useEffect(() => {
@@ -129,8 +148,15 @@ const ProfesionalPage = () => {
                   rating={comment?.rating}
                   photoAdmin={userAdminSelected(comment)?.photo}
                   nameAdmin={userAdminSelected(comment)?.name}
-                  commentAdmin={comment?.comment_admin}
-                  answer={true}
+                  commentAdmin={() => {
+                    if (comment.comment_admin !== null || comment.comment_admin !== "") {
+                      setAnswer(true);
+                      return comment.comment_admin;
+                    } else {
+                      setAnswer(false);
+                    }
+                  }}
+                  answer={answer}
                   onClick={() => console.log("click")}
                 ></Comments>
               ))
@@ -142,7 +168,15 @@ const ProfesionalPage = () => {
             show={showModal}
             title="Escribe un comentario"
             textButton="Comentar"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
             onClose={() => setShowModal(false)}
+            onClick={() => {
+              if (userId) {
+                createComment(parseInt(userId), userAdminId, 5, comment);
+              }
+              setShowModal(false);
+            }}
           />
         </ProfesionalLayout>
       </ScrollLayout.ScrollPart>
