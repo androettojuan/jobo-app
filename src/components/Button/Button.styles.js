@@ -30,6 +30,7 @@ export const StyledButton = styled("button", {
       },
       secondary: {
         backgroundColor: "$secondary",
+        color: "$white",
       },
       grey: {
         backgroundColor: "$light",

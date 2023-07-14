@@ -32,6 +32,8 @@ const ProfesionalPage = () => {
   const userAdminSelected = (comment) =>
     users?.find((user) => user.id === comment.user_admin_id);
 
+  // users
+
   async function getUser(userId) {
     const response = await fetch("http://localhost:8080/user/" + userId);
     const data = await response.json();
@@ -44,27 +46,29 @@ const ProfesionalPage = () => {
     setUsers(data);
   }
 
+  // jobs
+
   async function getJobs() {
     const response = await fetch("http://localhost:8080/jobs");
     const data = await response.json();
     setJobs(data);
   }
 
+  // comments
+
   async function createComment(userId, userAdminId, rating, comment) {
-    const response = await fetch("http://localhost:8080/comments", {
+    await fetch("http://localhost:8080/comments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userId: userId,
-        userAdminId: userAdminId,
-        rating: rating,
+        userId: parseInt(userId),
+        userAdminId: parseInt(userAdminId),
+        rating: parseInt(rating),
         comment: comment,
       }),
     });
-    const data = await response.json();
-    console.log(data);
   }
 
   useEffect(() => {
@@ -135,9 +139,9 @@ const ProfesionalPage = () => {
             </StyledProfesionalButtonComment>
             <Title>Comentarios</Title>
             {comments?.length > 0 ? (
-              comments.map((comment) => (
+              comments.map((comment, index) => (
                 <Comments
-                  key={userSelected(comment)?.name}
+                  key={index}
                   name={
                     userSelected(comment)?.name +
                     " " +
@@ -149,7 +153,10 @@ const ProfesionalPage = () => {
                   photoAdmin={userAdminSelected(comment)?.photo}
                   nameAdmin={userAdminSelected(comment)?.name}
                   commentAdmin={() => {
-                    if (comment.comment_admin !== null || comment.comment_admin !== "") {
+                    if (
+                      comment.comment_admin !== null ||
+                      comment.comment_admin !== ""
+                    ) {
                       setAnswer(true);
                       return comment.comment_admin;
                     } else {
@@ -173,7 +180,7 @@ const ProfesionalPage = () => {
             onClose={() => setShowModal(false)}
             onClick={() => {
               if (userId) {
-                createComment(parseInt(userId), userAdminId, 5, comment);
+                createComment(userId, userAdminId, 5, comment);
               }
               setShowModal(false);
             }}

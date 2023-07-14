@@ -18,12 +18,14 @@ const TextInput = ({
   label,
   disabled,
   copy,
+  type = "text",
 }) => {
   return (
     <StyledInputContainer>
       <StyledLabel>
         {label}
         <StyledTextInput
+          type={type}
           name={name}
           value={value}
           onChange={onChange}

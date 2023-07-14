@@ -4,6 +4,7 @@ import CommentsPage from "./CommentsPage";
 import HomePage from "./HomePage";
 import ProfessionPage from "./ProfessionPage";
 import ProfesionalPage from "./ProfesionalPage";
+import LoginPage from "./LoginPage";
 
 export const routes = [
   {
@@ -30,4 +31,8 @@ export const routes = [
     path: "/categories/:id",
     component: ProfessionPage,
   },
+  {
+    path: "/login",
+    component: LoginPage,
+  }
 ];
