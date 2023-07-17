@@ -5,6 +5,7 @@ import HomePage from "./HomePage";
 import ProfessionPage from "./ProfessionPage";
 import ProfesionalPage from "./ProfesionalPage";
 import LoginPage from "./LoginPage";
+import RegisterPage from "./RegisterPage";
 
 export const routes = [
   {
@@ -31,8 +32,15 @@ export const routes = [
     path: "/categories/:id",
     component: ProfessionPage,
   },
+];
+
+export const routesLogin = [
   {
-    path: "/login",
+    path: "/",
     component: LoginPage,
-  }
+  },
+  {
+    path: "/register",
+    component: RegisterPage,
+  },
 ];

@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import LoginLayout from "../components/LoginLayout/LoginLayout";
 import TextInput from "../components/TextInput/TextInput";
 import Button from "../components/Button/Button";
+import { useNavigate } from "react-router";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
 
   console.log(email, password);
 
@@ -42,7 +45,7 @@ const LoginPage = () => {
         <Button
           color="secondary"
           size={"medium"}
-          onClick={() => console.log("click")}
+          onClick={() => navigate("/register")}
         >
           Registrarse
         </Button>
