@@ -1,22 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+import ModalAlert from "../ModalAlert/ModalAlert";
 import {
   StyledInputSwitch,
   StyledInputSwitchLabel,
   StyledSwitch,
   StyledSwitchBall,
 } from "./InputSwitch.styles";
-import ModalAlert from "../ModalAlert/ModalAlert";
 
-const InputSwitch = () => {
-  const [active, setActive] = useState(true);
-
+const InputSwitch = ({active, onClick}) => {
   return (
     <>
-      <StyledInputSwitch
-        onClick={() => {
-          setActive(!active);
-        }}
-      >
+      <StyledInputSwitch onClick={onClick}>
         <StyledInputSwitchLabel>Desactivar cuenta</StyledInputSwitchLabel>
         <StyledSwitch active={active}>
           <StyledSwitchBall active={active} />
@@ -26,9 +20,7 @@ const InputSwitch = () => {
         <ModalAlert
           text="Si desactivas tu cuenta, tu perfil ya no estará disponible para que otras personas lo encuentren"
           active={active}
-          onClose={() => {
-            setActive(!active);
-          }}
+          onClose={onClick}
         />
       )}
     </>

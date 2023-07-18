@@ -7,6 +7,7 @@ import {
   StyledLabel,
 } from "./BottomBar.styles";
 import { AiOutlineComment } from "react-icons/ai";
+import { useUserData } from "../../utils/userData";
 
 const pagesList = [
   {
@@ -33,6 +34,7 @@ const pagesList = [
 ];
 
 const BottomBar = () => {
+  const user = useUserData();
   const navigate = useNavigate();
   const currentPath = window.location.pathname.split("/")?.[1] || "";
   const currentPage = pagesList.find((page) => page.page === `/${currentPath}`);
@@ -41,7 +43,7 @@ const BottomBar = () => {
     <StyledContainer>
       {pagesList
         .filter((page) => {
-          if (page.show === "admin") {
+          if (page.show === "admin" && !user?.is_profesional) {
             return false;
           }
           return true;
