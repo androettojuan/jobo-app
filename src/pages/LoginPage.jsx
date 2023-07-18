@@ -1,16 +1,53 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
+import Button from "../components/Button/Button";
 import LoginLayout from "../components/LoginLayout/LoginLayout";
 import TextInput from "../components/TextInput/TextInput";
-import Button from "../components/Button/Button";
-import { useNavigate } from "react-router";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  async function getLoggedUserid(token) {
+    const response = await fetch("http://localhost:8080/check-login", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    });
+    const data = await response.json();
+    return data;
+  }
 
-  console.log(email, password);
+  async function login(emailL, passwordL) {
+    await fetch("http://localhost:8080/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: emailL,
+        password: passwordL,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.token) {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("userId", data.userId);
+          getLoggedUserid(data.token).then((data) => {
+            if (data) {
+              localStorage.setItem("userId", data.userId);
+            }
+          });
+          navigate("/");
+        } else {
+          alert("Usuario o contraseña incorrectos");
+        }
+      });
+  }
 
   return (
     <LoginLayout>
@@ -38,7 +75,9 @@ const LoginPage = () => {
         <Button
           color="primary"
           size={"medium"}
-          onClick={() => console.log("click")}
+          onClick={() => {
+            login(email, password);
+          }}
         >
           Iniciar
         </Button>
