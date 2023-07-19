@@ -22,6 +22,7 @@ const AccountPage = () => {
   const [profession, setProfession] = useState("");
   const [description, setDescription] = useState(user.description);
   const [active, setActive] = useState(user?.is_active === 1 ? true : false);
+  const [show, setShow] = useState(false);
   const token = localStorage.getItem("token");
 
   async function updateUser(
@@ -42,7 +43,7 @@ const AccountPage = () => {
         name: name_1,
         lastname: lastname_1,
         phone: phone_1,
-        is_active: active_1 ? 0 : 1,
+        is_active: active_1 ? 1 : 0,
         description: description_1,
       }),
     })
@@ -74,7 +75,6 @@ const AccountPage = () => {
     if (editar === false) {
       setEditar(true);
     } else {
-      console.log(user.id);
       await updateUser(name, lastname, phone, description, active, user.id);
       setEditar(false);
     }
@@ -218,7 +218,16 @@ const AccountPage = () => {
               <AccountLayout.Switch>
                 <InputSwitch
                   active={active}
-                  onClick={() => setActive(!active)}
+                  show={show}
+                  onClick={() => {
+                    setActive(!active);
+                    setShow(!show);
+                    setEditar(!editar);
+                  }}
+                  disabled={() => {
+                    setActive(false);
+                    setShow(false);
+                  }}
                 />
               </AccountLayout.Switch>
               <AccountLayout.Button>

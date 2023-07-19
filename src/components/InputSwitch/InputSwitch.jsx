@@ -7,7 +7,7 @@ import {
   StyledSwitchBall,
 } from "./InputSwitch.styles";
 
-const InputSwitch = ({active, onClick}) => {
+const InputSwitch = ({ active, onClick, disabled, show }) => {
   return (
     <>
       <StyledInputSwitch onClick={onClick}>
@@ -16,11 +16,12 @@ const InputSwitch = ({active, onClick}) => {
           <StyledSwitchBall active={active} />
         </StyledSwitch>
       </StyledInputSwitch>
-      {active === false && (
+      {show === true && (
         <ModalAlert
           text="Si desactivas tu cuenta, tu perfil ya no estará disponible para que otras personas lo encuentren"
           active={active}
           onClose={onClick}
+          disabled={disabled}
         />
       )}
     </>
