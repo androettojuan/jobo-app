@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyledComments,
   StyledCommentsAdmin,
@@ -19,18 +19,16 @@ import {
 import Modal from "../Modal/Modal";
 
 const Comments = ({
-  name,
   comment,
-  photo,
+  onClick,
   rating,
-  answer,
   photoAdmin,
   nameAdmin,
-  commentAdmin,
-  isAdmin = true,
+  isAdmin,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [showOption, setShowOption] = useState(false);
+  const [user, setUser] = useState();
 
   const ratingColors = (star) => {
     if (star === 5) {
@@ -71,13 +69,30 @@ const Comments = ({
     }
   };
 
+  async function getUser(id) {
+    await fetch("http://localhost:8080/user/" + id, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setUser(data[0]));
+  }
+
+  useEffect(() => {
+    getUser(comment.user_id);
+  }, [comment.user_id]);
+
   return (
-    <StyledComments answer={answer ? true : false}>
+    <StyledComments answer={comment.comment_admin ? true : false}>
       <StyledCommentsUser>
-        <StyledCommentsUserPhoto src={photo} />
+        <StyledCommentsUserPhoto src={user?.photo} />
         <StyledCommentsContainerText>
-          <StyledCommentsUserName>{name}</StyledCommentsUserName>
-          <StyledCommentsUserText>{comment}</StyledCommentsUserText>
+          <StyledCommentsUserName>
+            {user?.name + " " + user?.lastname}
+          </StyledCommentsUserName>
+          <StyledCommentsUserText>{comment.comment}</StyledCommentsUserText>
         </StyledCommentsContainerText>
         <StyledCommentsUserRating>
           {ratingColors(rating)}
@@ -85,7 +100,7 @@ const Comments = ({
       </StyledCommentsUser>
       {!isAdmin && <StyledCommentsButton>Eliminar</StyledCommentsButton>}
       {isAdmin &&
-        (!answer ? (
+        (!comment.comment_admin ? (
           <StyledCommentsButton
             onClick={() => {
               setShowModal(true);
@@ -99,7 +114,9 @@ const Comments = ({
               <StyledCommentsUserPhoto src={photoAdmin} />
               <StyledCommentsContainerText>
                 <StyledCommentsUserName>{nameAdmin}</StyledCommentsUserName>
-                <StyledCommentsUserText>{commentAdmin}</StyledCommentsUserText>
+                <StyledCommentsUserText>
+                  {comment.comment_admin}
+                </StyledCommentsUserText>
               </StyledCommentsContainerText>
             </StyledCommentsUser>
             <StyledCommentsAdminOptionContainer>
