@@ -29,6 +29,7 @@ const Comments = ({
   const [showModal, setShowModal] = useState(false);
   const [showOption, setShowOption] = useState(false);
   const [user, setUser] = useState();
+  const deleteComment = undefined;
 
   const ratingColors = (star) => {
     if (star === 5) {
@@ -68,6 +69,18 @@ const Comments = ({
       );
     }
   };
+
+  async function deleteCommentAdmin(comment, id) {
+    await fetch("http://localhost:8080/comments/" + id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      body: JSON.stringify({ comment_admin: comment }),
+    })
+      .then((response) => response.json())
+  }
 
   async function getUser(id) {
     await fetch("http://localhost:8080/user/" + id, {
@@ -127,6 +140,7 @@ const Comments = ({
                 <StyledCommentsAdminOptionButton
                   onClick={() => {
                     setShowOption(false);
+                    deleteCommentAdmin(deleteComment, comment.id);
                     console.log("eliminar comentario");
                   }}
                 >
