@@ -12,14 +12,14 @@ const InputSwitch = ({ active, onClick, disabled, show }) => {
     <>
       <StyledInputSwitch onClick={onClick}>
         <StyledInputSwitchLabel>Desactivar cuenta</StyledInputSwitchLabel>
-        <StyledSwitch active={active}>
-          <StyledSwitchBall active={active} />
+        <StyledSwitch active={`${active}`}>
+          <StyledSwitchBall active={`${active}`} />
         </StyledSwitch>
       </StyledInputSwitch>
       {show === true && (
         <ModalAlert
           text="Si desactivas tu cuenta, tu perfil ya no estará disponible para que otras personas lo encuentren"
-          active={active}
+          active={`${active}`}
           onClose={onClick}
           disabled={disabled}
         />
