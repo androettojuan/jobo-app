@@ -14,23 +14,17 @@ import Title from "../components/Title/Title";
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 import Container from "../components/Container/Container";
 import { useParams } from "react-router";
+import { useUserData } from "../utils/userData";
 
 const ProfesionalPage = () => {
+  const user = useUserData();
   const { id } = useParams();
   const userId = id;
   const [profesional, setProfesional] = useState([]);
-  const [users, setUsers] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [comments, setComments] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const userAdminId = 2;
   const [comment, setComment] = useState("");
-  const [answer, setAnswer] = useState(false);
-
-  const userSelected = (comment) =>
-    users?.find((user) => user.id === comment.user_id);
-  const userAdminSelected = (comment) =>
-    users?.find((user) => user.id === comment.user_admin_id);
 
   // users
 
@@ -38,12 +32,6 @@ const ProfesionalPage = () => {
     const response = await fetch("http://localhost:8080/user/" + userId);
     const data = await response.json();
     setProfesional(data[0]);
-  }
-
-  async function getUsers() {
-    const response = await fetch("http://localhost:8080/users");
-    const data = await response.json();
-    setUsers(data);
   }
 
   // jobs
@@ -73,18 +61,23 @@ const ProfesionalPage = () => {
   }
 
   useEffect(() => {
-    async function getComments(userAdminId) {
-      const response = await fetch(
-        "http://localhost:8080/comments/" + userAdminId
-      );
-      const data = await response.json();
-      setComments(data);
+    async function getComments(id) {
+      await fetch("http://localhost:8080/comments/" + id, {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setComments(data);
+        });
     }
     getUser(userId);
     getJobs();
-    getComments(userAdminId);
-    getUsers();
-  }, [userId]);
+    getComments(userId);
+  }, [id, userId]);
 
   return (
     <ScrollLayout>
@@ -143,29 +136,12 @@ const ProfesionalPage = () => {
               comments.map((comment, index) => (
                 <Comments
                   key={index}
-                  name={
-                    userSelected(comment)?.name +
-                    " " +
-                    userSelected(comment)?.lastname
-                  }
-                  photo={userSelected(comment)?.photo}
-                  comment={comment?.comment}
-                  rating={comment?.rating}
-                  photoAdmin={userAdminSelected(comment)?.photo}
-                  nameAdmin={userAdminSelected(comment)?.name}
-                  commentAdmin={() => {
-                    if (
-                      comment.comment_admin !== null ||
-                      comment.comment_admin !== ""
-                    ) {
-                      setAnswer(true);
-                      return comment.comment_admin;
-                    } else {
-                      setAnswer(false);
-                    }
-                  }}
-                  answer={answer}
+                  rating={5}
+                  photoAdmin={profesional?.photo}
+                  nameAdmin={profesional?.name}
+                  comment={comment}
                   onClick={() => console.log("click")}
+                  ownerId={user.id}
                 ></Comments>
               ))
             ) : (
@@ -180,8 +156,8 @@ const ProfesionalPage = () => {
             onChange={(e) => setComment(e.target.value)}
             onClose={() => setShowModal(false)}
             onClick={() => {
-              if (userId) {
-                createComment(userId, userAdminId, 5, comment);
+              if (user.id) {
+                createComment(user.id, id, 5, comment);
               }
               setShowModal(false);
             }}

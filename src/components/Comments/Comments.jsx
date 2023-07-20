@@ -24,11 +24,12 @@ const Comments = ({
   rating,
   photoAdmin,
   nameAdmin,
-  isAdmin,
+  ownerId,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [showOption, setShowOption] = useState(false);
   const [user, setUser] = useState();
+  const [response, setResponse] = useState("");
   const deleteComment = undefined;
 
   const ratingColors = (star) => {
@@ -70,6 +71,11 @@ const Comments = ({
     }
   };
 
+  const ownerAdmin =
+    parseInt(localStorage.getItem("userId")) === comment.user_admin_id;
+
+  const owner = ownerId === comment.user_id;
+
   async function deleteCommentAdmin(comment, id) {
     await fetch("http://localhost:8080/comments/" + id, {
       method: "PUT",
@@ -78,8 +84,18 @@ const Comments = ({
         authorization: "Bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify({ comment_admin: comment }),
-    })
-      .then((response) => response.json())
+    }).then((response) => response.json());
+  }
+
+  async function replyComment(comment, id) {
+    await fetch("http://localhost:8080/comments/" + id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      body: JSON.stringify({ comment_admin: comment }),
+    }).then((response) => response.json());
   }
 
   async function getUser(id) {
@@ -111,8 +127,10 @@ const Comments = ({
           {ratingColors(rating)}
         </StyledCommentsUserRating>
       </StyledCommentsUser>
-      {!isAdmin && <StyledCommentsButton>Eliminar</StyledCommentsButton>}
-      {isAdmin &&
+      {owner && !ownerAdmin ? (
+        <StyledCommentsButton>Eliminar</StyledCommentsButton>
+      ) : null}
+      {(ownerAdmin || comment.comment_admin) &&
         (!comment.comment_admin ? (
           <StyledCommentsButton
             onClick={() => {
@@ -132,29 +150,39 @@ const Comments = ({
                 </StyledCommentsUserText>
               </StyledCommentsContainerText>
             </StyledCommentsUser>
-            <StyledCommentsAdminOptionContainer>
-              <StyledCommentsAdminOptionIcon
-                onClick={() => setShowOption(!showOption)}
-              ></StyledCommentsAdminOptionIcon>
-              <StyledCommentsAdminOptionButtonContainer show={showOption}>
-                <StyledCommentsAdminOptionButton
-                  onClick={() => {
-                    setShowOption(false);
-                    deleteCommentAdmin(deleteComment, comment.id);
-                    console.log("eliminar comentario");
-                  }}
-                >
-                  Eliminar
-                </StyledCommentsAdminOptionButton>
-              </StyledCommentsAdminOptionButtonContainer>
-            </StyledCommentsAdminOptionContainer>
+            {ownerAdmin && (
+              <StyledCommentsAdminOptionContainer>
+                <StyledCommentsAdminOptionIcon
+                  onClick={() => setShowOption(!showOption)}
+                ></StyledCommentsAdminOptionIcon>
+                <StyledCommentsAdminOptionButtonContainer show={showOption}>
+                  <StyledCommentsAdminOptionButton
+                    onClick={() => {
+                      setShowOption(false);
+                      deleteCommentAdmin(deleteComment, comment.id);
+                      console.log("eliminar comentario");
+                    }}
+                  >
+                    Eliminar
+                  </StyledCommentsAdminOptionButton>
+                </StyledCommentsAdminOptionButtonContainer>
+              </StyledCommentsAdminOptionContainer>
+            )}
           </StyledCommentsAdmin>
         ))}
       <Modal
         show={showModal}
         title="Responder"
+        value={response}
         onClose={() => setShowModal(false)}
         textButton={"Enviar comentario"}
+        onChange={(e) => setResponse(e.target.value)}
+        onClick={() => {
+          if (response !== "") {
+            replyComment(response, comment.id);
+            setShowModal(false);
+          }
+        }}
       ></Modal>
     </StyledComments>
   );
