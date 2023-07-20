@@ -126,7 +126,17 @@ const ProfesionalPage = () => {
               <Button
                 size={"medium"}
                 color={"primary"}
-                onClick={() => setShowModal(true)}
+                onClick={() => {
+                  if (user.id === profesional.id) {
+                    alert("No puedes comentar tu propio perfil");
+                    return;
+                  }
+                  if (comments.find((comment) => comment.user_id === user.id)) {
+                    alert("No puedes volver a comentar este perfil");
+                    return;
+                  }
+                  setShowModal(true);
+                }}
               >
                 Escribe un comentario
               </Button>
