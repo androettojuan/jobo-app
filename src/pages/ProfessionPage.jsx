@@ -41,7 +41,7 @@ const ProfessionPage = () => {
       ></Breadcrumb>
       <ProfessionLayout.ContainerWorkers>
         {workers
-          .filter((worker) => worker.job_id === parseInt(id))
+          .filter((worker) => worker.job_id === parseInt(id) && worker.is_active)
           .map((worker) => (
             <ProfesionalCard
               key={worker.id}
