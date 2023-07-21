@@ -87,6 +87,16 @@ const Comments = ({
     }).then((response) => response.json());
   }
 
+  async function deleteCommentUser(id) {
+    await fetch("http://localhost:8080/comments/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    }).then((response) => response.json());
+  }
+
   async function replyComment(comment, id) {
     await fetch("http://localhost:8080/comments/" + id, {
       method: "PUT",
@@ -128,7 +138,14 @@ const Comments = ({
         </StyledCommentsUserRating>
       </StyledCommentsUser>
       {owner && !ownerAdmin ? (
-        <StyledCommentsButton>Eliminar</StyledCommentsButton>
+        <StyledCommentsButton
+          onClick={() => {
+            deleteCommentUser(comment.id);
+            alert("Comentario eliminado");
+          }}
+        >
+          Eliminar
+        </StyledCommentsButton>
       ) : null}
       {(ownerAdmin || comment.comment_admin) &&
         (!comment.comment_admin ? (
