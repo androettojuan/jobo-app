@@ -11,6 +11,7 @@ import TextInput from "../components/TextInput/TextInput";
 import UserPhoto from "../components/UserPhoto/UserPhoto";
 import InputSwitch from "../components/InputSwitch/InputSwitch";
 import { useUserData } from "../utils/userData";
+import Select from "../components/Select/Select";
 
 const AccountPage = () => {
   const user = useUserData();
@@ -19,11 +20,19 @@ const AccountPage = () => {
   const [lastname, setLastname] = useState(user.lastname);
   const displayName = name + " " + lastname;
   const [phone, setPhone] = useState(user.phone);
+  const [jobs, setJobs] = useState([]);
+  const [jobId, setJobId] = useState(user.job_id);
   const [profession, setProfession] = useState("");
   const [description, setDescription] = useState(user.description);
   const [active, setActive] = useState(user?.is_active === 1 ? true : false);
   const [show, setShow] = useState(false);
   const token = localStorage.getItem("token");
+
+  async function getJobs() {
+    const response = await fetch("http://localhost:8080/jobs");
+    const data = await response.json();
+    setJobs(data);
+  }
 
   async function updateUser(
     name_1,
@@ -31,6 +40,7 @@ const AccountPage = () => {
     phone_1,
     description_1,
     active_1,
+    job_1,
     id_1
   ) {
     await fetch("http://localhost:8080/user/" + id_1, {
@@ -44,6 +54,7 @@ const AccountPage = () => {
         lastname: lastname_1,
         phone: phone_1,
         is_active: active_1 ? 1 : 0,
+        job_id: job_1,
         description: description_1,
       }),
     })
@@ -75,7 +86,15 @@ const AccountPage = () => {
     if (editar === false) {
       setEditar(true);
     } else {
-      await updateUser(name, lastname, phone, description, active, user.id);
+      await updateUser(
+        name,
+        lastname,
+        phone,
+        description,
+        active,
+        jobId,
+        user.id
+      );
       setEditar(false);
     }
   };
@@ -89,10 +108,11 @@ const AccountPage = () => {
   };
 
   useEffect(() => {
-    if (user?.job_id) {
-      getJob(user?.job_id);
+    if (jobId) {
+      getJob(jobId);
     }
-  }, [user.job_id]);
+    getJobs();
+  }, [jobId]);
 
   return (
     <>
@@ -170,12 +190,14 @@ const AccountPage = () => {
                       onChange={(e) => setLastname(e.target.value)}
                       placeholder="Apellido"
                     ></TextInput>
-                    <TextInput
-                      value={profession || ""}
-                      disabled={!editar}
-                      onChange={(e) => setProfession(e.target.value)}
-                      placeholder="Profesion"
-                    ></TextInput>
+                    <Select
+                      name={profession || ""}
+                      value={jobId || ""}
+                      onChange={(e) => {
+                        setJobId(parseInt(e.target.value));
+                      }}
+                      options={jobs}
+                    />
                   </>
                 ) : (
                   <>
