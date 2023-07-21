@@ -18,14 +18,7 @@ import {
 } from "./Comments.styles";
 import Modal from "../Modal/Modal";
 
-const Comments = ({
-  comment,
-  onClick,
-  rating,
-  photoAdmin,
-  nameAdmin,
-  ownerId,
-}) => {
+const Comments = ({ comment, rating, photoAdmin, nameAdmin, ownerId }) => {
   const [showModal, setShowModal] = useState(false);
   const [showOption, setShowOption] = useState(false);
   const [user, setUser] = useState();
@@ -142,6 +135,7 @@ const Comments = ({
           onClick={() => {
             deleteCommentUser(comment.id);
             alert("Comentario eliminado");
+            // volver a renderizar de la pagina
           }}
         >
           Eliminar
@@ -177,7 +171,6 @@ const Comments = ({
                     onClick={() => {
                       setShowOption(false);
                       deleteCommentAdmin(deleteComment, comment.id);
-                      console.log("eliminar comentario");
                     }}
                   >
                     Eliminar
@@ -195,9 +188,12 @@ const Comments = ({
         textButton={"Enviar comentario"}
         onChange={(e) => setResponse(e.target.value)}
         onClick={() => {
-          if (response !== "") {
+          console.log(response);
+          if (response !== "" && response !== undefined && response !== null) {
             replyComment(response, comment.id);
             setShowModal(false);
+          } else {
+            alert("Debe ingresar un comentario");
           }
         }}
       ></Modal>

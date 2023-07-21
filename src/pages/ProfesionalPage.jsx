@@ -150,7 +150,6 @@ const ProfesionalPage = () => {
                   photoAdmin={profesional?.photo}
                   nameAdmin={profesional?.name}
                   comment={comment}
-                  onClick={() => console.log("click")}
                   ownerId={user.id}
                 ></Comments>
               ))
@@ -166,10 +165,17 @@ const ProfesionalPage = () => {
             onChange={(e) => setComment(e.target.value)}
             onClose={() => setShowModal(false)}
             onClick={() => {
-              if (user.id) {
+              if (
+                comment !== "" &&
+                comment !== undefined &&
+                comment !== null &&
+                user.id
+              ) {
                 createComment(user.id, id, 5, comment);
+                setShowModal(false);
+              } else {
+                alert("Debe ingresar un comentario");
               }
-              setShowModal(false);
             }}
           />
         </ProfesionalLayout>
