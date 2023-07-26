@@ -9,8 +9,15 @@ import Button from "../components/Button/Button";
 import ScrollLayout from "../components/ScrollLayout/ScrollLayout";
 
 const RegisterPage = () => {
-  const [active, setActive] = useState(false);
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState(undefined);
+  const [description, setDescription] = useState(undefined);
+  const [isProfesional, setIsProfesional] = useState(0);
   const [jobId, setJobId] = useState(0);
+  const [active, setActive] = useState(false);
   const [jobs, setJobs] = useState([]);
 
   async function getJobs() {
@@ -19,9 +26,43 @@ const RegisterPage = () => {
     setJobs(data);
   }
 
+  async function createUser(
+    name_1,
+    lastname_1,
+    password_1,
+    email_1,
+    is_profesional_1,
+    phone_1,
+    job_1,
+    description_1
+  ) {
+    await fetch("http://localhost:8080/user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name_1,
+        lastname: lastname_1,
+        password: password_1,
+        email: email_1,
+        is_profesional: is_profesional_1,
+        phone: phone_1,
+        job_id: job_1,
+        description: description_1,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }
+
   useEffect(() => {
     getJobs();
   }, []);
+
+  console.log(isProfesional);
 
   return (
     <ScrollLayout>
@@ -31,22 +72,43 @@ const RegisterPage = () => {
             pages={[{ label: "Registro", url: "/register", name: "register" }]}
           />
           <RegisterLayout.Inputs>
-            <TextInput label="Nombre" placeholder="Escribe tu nombre" />
-            <TextInput label="Apellido" placeholder="Escribe tu apellido" />
+            <TextInput
+              label="Nombre"
+              placeholder="Escribe tu nombre"
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
+            <TextInput
+              label="Apellido"
+              placeholder="Escribe tu apellido"
+              onChange={(e) => {
+                setLastname(e.target.value);
+              }}
+            />
             <TextInput
               label="Correo electrónico"
               placeholder="Escribe tu correo electrónico"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
             />
             <TextInput
               label="Contraseña"
               placeholder="Escribe tu contraseña"
               type="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             />
             <br />
             <InputSwitch
               label="¿Eres profesional?"
               active={active}
-              onClick={() => setActive(!active)}
+              onClick={() => {
+                setActive(!active);
+                setIsProfesional(active ? 0 : 1);
+              }}
             />
             {active && (
               <>
@@ -63,15 +125,40 @@ const RegisterPage = () => {
                 <TextInput
                   label="Descripción"
                   placeholder="Escribe una descripcion de tu trabajo"
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                  }}
                 />
                 <TextInput
                   label="Telefono"
                   placeholder="Escribe tu numero sin 0 ni 15"
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                  }}
                 />
               </>
             )}
             <br />
-            <Button color={"primary"} size={"large"}>
+            <Button
+              color={"primary"}
+              size={"large"}
+              onClick={() => {
+                if (isProfesional === 1) {
+                  createUser(
+                    name,
+                    lastname,
+                    password,
+                    email,
+                    isProfesional,
+                    phone,
+                    jobId,
+                    description
+                  );
+                } else {
+                  createUser(name, lastname, password, email, isProfesional);
+                }
+              }}
+            >
               Registrarse
             </Button>
             <br />
