@@ -239,6 +239,10 @@ const AccountPage = () => {
               </AccountLayout.Info>
               <AccountLayout.Switch>
                 <InputSwitch
+                  label={"Desactivar cuenta"}
+                  textAlert={
+                    "Si desactivas tu cuenta, tu perfil ya no estará disponible para que otras personas lo encuentren"
+                  }
                   active={active}
                   show={show}
                   onClick={() => {

@@ -7,18 +7,18 @@ import {
   StyledSwitchBall,
 } from "./InputSwitch.styles";
 
-const InputSwitch = ({ active, onClick, disabled, show }) => {
+const InputSwitch = ({ active, onClick, disabled, show, label, textAlert }) => {
   return (
     <>
       <StyledInputSwitch onClick={onClick}>
-        <StyledInputSwitchLabel>Desactivar cuenta</StyledInputSwitchLabel>
+        <StyledInputSwitchLabel>{label}</StyledInputSwitchLabel>
         <StyledSwitch active={`${active}`}>
           <StyledSwitchBall active={`${active}`} />
         </StyledSwitch>
       </StyledInputSwitch>
       {show === true && (
         <ModalAlert
-          text="Si desactivas tu cuenta, tu perfil ya no estará disponible para que otras personas lo encuentren"
+          text={textAlert}
           active={`${active}`}
           onClose={onClick}
           disabled={disabled}

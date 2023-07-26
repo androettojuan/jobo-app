@@ -20,7 +20,7 @@ const ProfesionalPage = () => {
   const user = useUserData();
   const { id } = useParams();
   const userId = id;
-  const [profesional, setProfesional] = useState([]);
+  const [profesional, setProfesional] = useState("");
   const [jobs, setJobs] = useState([]);
   const [comments, setComments] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -60,20 +60,21 @@ const ProfesionalPage = () => {
     });
   }
 
+  async function getComments(id) {
+    await fetch("http://localhost:8080/comments/" + id, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setComments(data);
+      });
+  }
+
   useEffect(() => {
-    async function getComments(id) {
-      await fetch("http://localhost:8080/comments/" + id, {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setComments(data);
-        });
-    }
     getUser(userId);
     getJobs();
     getComments(userId);
@@ -116,6 +117,7 @@ const ProfesionalPage = () => {
           <ProfesionalLayout.Info>
             <TextInput
               label={"Teléfono"}
+              name={profesional?.phone}
               value={profesional?.phone}
               disabled={true}
               copy={true}
@@ -172,7 +174,7 @@ const ProfesionalPage = () => {
                 user.id
               ) {
                 createComment(user.id, id, 5, comment);
-                setShowModal(false);
+                setShowModal(false);                
               } else {
                 alert("Debe ingresar un comentario");
               }

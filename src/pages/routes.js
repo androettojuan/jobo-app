@@ -32,8 +32,11 @@ export const routes = [
     path: "/categories/:id",
     component: ProfessionPage,
   },
+];
+
+export const routesRegister = [
   {
-    path: "/login",
+    path: "/",
     component: LoginPage,
   },
   {
