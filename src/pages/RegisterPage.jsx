@@ -73,7 +73,10 @@ const RegisterPage = () => {
       <ScrollLayout.ScrollPart>
         <RegisterLayout>
           <Breadcrumb
-            pages={[{ label: "Registro", url: "/register", name: "register" }]}
+            pages={[
+              { label: "Iniciar sesión", url: "/", name: "login" },
+              { label: "Registro", url: "/register", name: "register" },
+            ]}
           />
           <RegisterLayout.Inputs>
             <TextInput
