@@ -204,7 +204,6 @@ const Comments = ({
         textButton={"Enviar comentario"}
         onChange={(e) => setResponse(e.target.value)}
         onClick={() => {
-          console.log(response);
           if (response !== "" && response !== undefined && response !== null) {
             replyComment(response, comment.id);
             setShowModal(false);

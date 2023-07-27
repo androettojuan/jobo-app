@@ -57,16 +57,11 @@ const RegisterPage = () => {
       }),
     })
       .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      });
   }
 
   useEffect(() => {
     getJobs();
   }, []);
-
-  console.log(image);
 
   return (
     <ScrollLayout>
