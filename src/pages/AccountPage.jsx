@@ -41,7 +41,6 @@ const AccountPage = () => {
     lastname_1,
     phone_1,
     description_1,
-    active_1,
     job_1,
     id_1
   ) {
@@ -55,7 +54,6 @@ const AccountPage = () => {
         name: name_1,
         lastname: lastname_1,
         phone: phone_1,
-        is_active: active_1 ? 1 : 0,
         job_id: job_1,
         description: description_1,
       }),
@@ -68,6 +66,19 @@ const AccountPage = () => {
           alert("Error al actualizar");
         }
       });
+  }
+
+  async function disableUser(id, active_1) {
+    await fetch("http://localhost:8080/user/active/" + id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify({
+        is_active: active_1,
+      }),
+    }).then((response) => response.json());
   }
 
   async function getJob(jobId) {
@@ -88,15 +99,7 @@ const AccountPage = () => {
     if (editar === false) {
       setEditar(true);
     } else {
-      await updateUser(
-        name,
-        lastname,
-        phone,
-        description,
-        active,
-        jobId,
-        user.id
-      );
+      await updateUser(name, lastname, phone, description, jobId, user.id);
       setEditar(false);
     }
   };
@@ -255,12 +258,13 @@ const AccountPage = () => {
                   }
                   active={active}
                   show={show}
-                  onClick={() => {
+                  onClick={async () => {
                     setActive(!active);
                     setShow(!show);
-                    setEditar(!editar);
+                    await disableUser(user.id, 1);
                   }}
-                  disabled={() => {
+                  disabled={async () => {                    
+                    await disableUser(user.id, 0);
                     setActive(false);
                     setShow(false);
                   }}
