@@ -40,7 +40,6 @@ const CommentsPage = () => {
           <Comments
             key={comment.id}
             comment={comment}
-            onClick={() => console.log("click")}
             rating={4}
             photoAdmin={user?.photo}
             nameAdmin={user?.name}

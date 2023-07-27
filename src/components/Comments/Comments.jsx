@@ -17,6 +17,7 @@ import {
   StyledRatingNumer,
 } from "./Comments.styles";
 import Modal from "../Modal/Modal";
+import Alert from "../Alert/Alert";
 
 const Comments = ({
   comment,
@@ -31,6 +32,7 @@ const Comments = ({
   const [user, setUser] = useState();
   const [response, setResponse] = useState("");
   const deleteComment = undefined;
+  const [showAlert, setShowAlert] = useState(false);
 
   const ratingColors = (star) => {
     if (star === 5) {
@@ -127,6 +129,9 @@ const Comments = ({
 
   useEffect(() => {
     getUser(comment.user_id);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 5000);
   }, [comment.user_id]);
 
   return (
@@ -204,10 +209,11 @@ const Comments = ({
             replyComment(response, comment.id);
             setShowModal(false);
           } else {
-            alert("Debe ingresar un comentario");
+            setShowAlert(true);
           }
         }}
       ></Modal>
+      <Alert visible={showAlert} text={"Debe ingresar un comentario"} />
     </StyledComments>
   );
 };

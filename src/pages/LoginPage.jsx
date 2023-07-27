@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Button from "../components/Button/Button";
 import LoginLayout from "../components/LoginLayout/LoginLayout";
 import TextInput from "../components/TextInput/TextInput";
+import Alert from "../components/Alert/Alert";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
   async function getLoggedUserid(token) {
@@ -44,10 +46,16 @@ const LoginPage = () => {
           });
           navigate("/");
         } else {
-          alert("Usuario o contraseña incorrectos");
+          setShowAlert(true);
         }
       });
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 5000);
+  }, [showAlert]);
 
   return (
     <LoginLayout>
@@ -89,6 +97,7 @@ const LoginPage = () => {
           Registrarse
         </Button>
       </LoginLayout.Button>
+      <Alert visible={showAlert} text={"Usuario o contraseña incorrectos"} />
     </LoginLayout>
   );
 };

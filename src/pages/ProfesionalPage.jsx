@@ -15,6 +15,7 @@ import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 import Container from "../components/Container/Container";
 import { useParams } from "react-router";
 import { useUserData } from "../utils/userData";
+import Alert from "../components/Alert/Alert";
 
 const ProfesionalPage = () => {
   const user = useUserData();
@@ -25,6 +26,7 @@ const ProfesionalPage = () => {
   const [comments, setComments] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [comment, setComment] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   // users
 
@@ -78,10 +80,23 @@ const ProfesionalPage = () => {
       });
   }
 
+  const selectAlertMessage = () => {
+    if (user.id === profesional.id) {
+      return "No puedes comentar tu propio perfil";
+    }
+    if (comments.find((comment) => comment.user_id === user.id)) {
+      return "No puedes volver a comentar este perfil";
+    }
+    return "Debe ingresar un comentario";
+  };
+
   useEffect(() => {
     getUser(userId);
     getJobs();
     getComments(userId);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 5000);
   }, [id, userId]);
 
   return (
@@ -134,11 +149,11 @@ const ProfesionalPage = () => {
                 color={"primary"}
                 onClick={() => {
                   if (user.id === profesional.id) {
-                    alert("No puedes comentar tu propio perfil");
+                    setShowAlert(true);
                     return;
                   }
                   if (comments.find((comment) => comment.user_id === user.id)) {
-                    alert("No puedes volver a comentar este perfil");
+                    setShowAlert(true);
                     return;
                   }
                   setShowModal(true);
@@ -183,12 +198,13 @@ const ProfesionalPage = () => {
                 createComment(user.id, id, 5, comment);
                 setShowModal(false);
               } else {
-                alert("Debe ingresar un comentario");
+                setShowAlert(true);
               }
             }}
           />
         </ProfesionalLayout>
       </ScrollLayout.ScrollPart>
+      <Alert text={selectAlertMessage()} visible={showAlert} />
     </ScrollLayout>
   );
 };
