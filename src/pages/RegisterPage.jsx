@@ -8,6 +8,7 @@ import Title from "../components/Title/Title";
 import Button from "../components/Button/Button";
 import ScrollLayout from "../components/ScrollLayout/ScrollLayout";
 import { useNavigate } from "react-router-dom";
+import UploadImage from "../components/UploadImage/UploadImage";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -20,6 +21,7 @@ const RegisterPage = () => {
   const [jobId, setJobId] = useState(0);
   const [active, setActive] = useState(false);
   const [jobs, setJobs] = useState([]);
+  const [image, setImage] = useState(undefined);
   const navigate = useNavigate();
 
   async function getJobs() {
@@ -64,7 +66,7 @@ const RegisterPage = () => {
     getJobs();
   }, []);
 
-  console.log(isProfesional);
+  console.log(image);
 
   return (
     <ScrollLayout>
@@ -87,6 +89,12 @@ const RegisterPage = () => {
               onChange={(e) => {
                 setLastname(e.target.value);
               }}
+            />
+            <UploadImage
+              onChange={(e) => {
+                setImage(e.target.files[0]);
+              }}
+              image={image}
             />
             <TextInput
               label="Correo electrónico"
