@@ -57,7 +57,11 @@ const ProfesionalPage = () => {
         rating: parseInt(rating),
         comment: comment,
       }),
-    });
+    })
+      .then((response) => response.json())
+      .then(() => {
+        getComments(id);
+      });
   }
 
   async function getComments(id) {
@@ -153,6 +157,9 @@ const ProfesionalPage = () => {
                   nameAdmin={profesional?.name}
                   comment={comment}
                   ownerId={user.id}
+                  update={() => {
+                    getComments(id);
+                  }}
                 ></Comments>
               ))
             ) : (
@@ -174,7 +181,7 @@ const ProfesionalPage = () => {
                 user.id
               ) {
                 createComment(user.id, id, 5, comment);
-                setShowModal(false);                
+                setShowModal(false);
               } else {
                 alert("Debe ingresar un comentario");
               }

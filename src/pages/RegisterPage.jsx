@@ -7,6 +7,7 @@ import Select from "../components/Select/Select";
 import Title from "../components/Title/Title";
 import Button from "../components/Button/Button";
 import ScrollLayout from "../components/ScrollLayout/ScrollLayout";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -19,6 +20,7 @@ const RegisterPage = () => {
   const [jobId, setJobId] = useState(0);
   const [active, setActive] = useState(false);
   const [jobs, setJobs] = useState([]);
+  const navigate = useNavigate();
 
   async function getJobs() {
     const response = await fetch("http://localhost:8080/jobs");
@@ -157,6 +159,7 @@ const RegisterPage = () => {
                 } else {
                   createUser(name, lastname, password, email, isProfesional);
                 }
+                navigate("/");
               }}
             >
               Registrarse

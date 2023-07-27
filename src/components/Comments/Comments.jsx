@@ -18,7 +18,14 @@ import {
 } from "./Comments.styles";
 import Modal from "../Modal/Modal";
 
-const Comments = ({ comment, rating, photoAdmin, nameAdmin, ownerId }) => {
+const Comments = ({
+  comment,
+  rating,
+  photoAdmin,
+  nameAdmin,
+  ownerId,
+  update,
+}) => {
   const [showModal, setShowModal] = useState(false);
   const [showOption, setShowOption] = useState(false);
   const [user, setUser] = useState();
@@ -77,7 +84,9 @@ const Comments = ({ comment, rating, photoAdmin, nameAdmin, ownerId }) => {
         authorization: "Bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify({ comment_admin: comment }),
-    }).then((response) => response.json());
+    })
+      .then((response) => response.json())
+      .then(() => update());
   }
 
   async function deleteCommentUser(id) {
@@ -87,7 +96,9 @@ const Comments = ({ comment, rating, photoAdmin, nameAdmin, ownerId }) => {
         "Content-Type": "application/json",
         authorization: "Bearer " + localStorage.getItem("token"),
       },
-    }).then((response) => response.json());
+    })
+      .then((response) => response.json())
+      .then(() => update());
   }
 
   async function replyComment(comment, id) {
@@ -98,7 +109,9 @@ const Comments = ({ comment, rating, photoAdmin, nameAdmin, ownerId }) => {
         authorization: "Bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify({ comment_admin: comment }),
-    }).then((response) => response.json());
+    })
+      .then((response) => response.json())
+      .then(() => update());
   }
 
   async function getUser(id) {
@@ -134,8 +147,6 @@ const Comments = ({ comment, rating, photoAdmin, nameAdmin, ownerId }) => {
         <StyledCommentsButton
           onClick={() => {
             deleteCommentUser(comment.id);
-            alert("Comentario eliminado");
-            // volver a renderizar de la pagina
           }}
         >
           Eliminar

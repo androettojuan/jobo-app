@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Title from "../components/Title/Title";
 import Comments from "../components/Comments/Comments";
 import CommentsLayout from "../components/CommentsLayout/CommentsLayout";
@@ -9,8 +9,8 @@ const CommentsPage = () => {
   const token = localStorage.getItem("token");
   const [comments, setComments] = useState([]);
 
-  useEffect(() => {
-    async function getComments(id) {
+  const getComments = useCallback(
+    async (id) => {
       await fetch("http://localhost:8080/comments/" + id, {
         method: "get",
         headers: {
@@ -22,9 +22,13 @@ const CommentsPage = () => {
         .then((data) => {
           setComments(data);
         });
-    }
+    },
+    [token]
+  );
+
+  useEffect(() => {
     getComments(user.id);
-  }, [token, user.id]);
+  }, [getComments, user.id]);
 
   return (
     <CommentsLayout>
@@ -41,6 +45,9 @@ const CommentsPage = () => {
             photoAdmin={user?.photo}
             nameAdmin={user?.name}
             isAdmin={user?.is_profesional ? true : false}
+            update={() => {
+              getComments(user.id);
+            }}
           ></Comments>
         ))}
       </CommentsLayout.Comments>

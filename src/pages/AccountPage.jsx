@@ -12,6 +12,7 @@ import UserPhoto from "../components/UserPhoto/UserPhoto";
 import InputSwitch from "../components/InputSwitch/InputSwitch";
 import { useUserData } from "../utils/userData";
 import Select from "../components/Select/Select";
+import { useNavigate } from "react-router-dom";
 
 const AccountPage = () => {
   const user = useUserData();
@@ -27,6 +28,7 @@ const AccountPage = () => {
   const [active, setActive] = useState(user?.is_active === 1 ? true : false);
   const [show, setShow] = useState(false);
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   async function getJobs() {
     const response = await fetch("http://localhost:8080/jobs");
@@ -165,7 +167,15 @@ const AccountPage = () => {
                 ></TextInput>
               </AccountLayout.Info>
               <AccountLayout.Button>
-                <Button size="large" color="grey">
+                <Button
+                  size="large"
+                  color="grey"
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("userId");
+                    navigate("/");
+                  }}
+                >
                   Cerrar sesion
                 </Button>
               </AccountLayout.Button>
@@ -257,7 +267,15 @@ const AccountPage = () => {
                 />
               </AccountLayout.Switch>
               <AccountLayout.Button>
-                <Button size="large" color="grey">
+                <Button
+                  size="large"
+                  color="grey"
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    localStorage.removeItem("userId");
+                    navigate("/");
+                  }}
+                >
                   Cerrar sesion
                 </Button>
               </AccountLayout.Button>
