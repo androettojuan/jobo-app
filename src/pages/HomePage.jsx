@@ -40,7 +40,6 @@ const HomePage = () => {
                 <CategoryButton
                   key={category.id}
                   profession={category?.title}
-                  icon={category?.icon}
                   color={
                     category.id % 2 === 0 ? "tertiary" : "secondary"
                   }

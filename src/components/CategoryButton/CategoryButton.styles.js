@@ -9,10 +9,15 @@ export const StyledCategoryButton = styled("div", {
   borderRadius: "16px",
   padding: "6px",
   cursor: "pointer",
-  width: "120px",
-  height: "110px",
-  gap: "4px",
-  "@media (max-width: 768px)": { width: "100px", height: "90px" },
+  width: "130px",
+  height: "120px",
+  gap: "6px",
+  "@media (max-width: 768px)": {
+    width: "100px",
+    height: "100px",
+    padding: "4px",
+    borderRadius: "12px",
+  },
   variants: {
     color: {
       secondary: {
@@ -28,7 +33,6 @@ export const StyledCategoryButton = styled("div", {
 export const StyledCategoryIcon = styled("img", {
   width: "36px",
   height: "36px",
-  filter: "invert(1)",
 });
 
 export const StyledCategoryProfession = styled("span", {
