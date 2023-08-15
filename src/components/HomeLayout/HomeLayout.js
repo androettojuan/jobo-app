@@ -1,25 +1,16 @@
 import {
-  StyledHomeButtonLg,
-  StyledHomeButtons,
-  StyledHomeButtonsSm,
-  StyledHomeFavorites,
   StyledHomeLayout,
-  StyledHomeSearch,
+  StyledHomeHeader,
   StyledHomeTitle,
+  StyledHomeContent,
 } from "./HomeLayout.styles";
 
 const HomeLayout = StyledHomeLayout;
 
-HomeLayout.Search = StyledHomeSearch;
-
-HomeLayout.Buttons = StyledHomeButtons;
-
-HomeLayout.ButtonLg = StyledHomeButtonLg;
-
-HomeLayout.ButtonsSm = StyledHomeButtonsSm;
+HomeLayout.Header = StyledHomeHeader;
 
 HomeLayout.Title = StyledHomeTitle;
 
-HomeLayout.Favorites = StyledHomeFavorites;
+HomeLayout.Content = StyledHomeContent;
 
 export default HomeLayout;

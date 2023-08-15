@@ -17,6 +17,16 @@ export const StyledTitle = styled("h1", {
         fontWeight: "700",
         lineHeight: "28px",
       },
+      xl: {
+        fontSize: "24px",
+        fontWeight: "700",
+        lineHeight: "32px",
+        "@media (max-width: 768px)": {
+          fontSize: "20px",
+          fontWeight: "700",
+          lineHeight: "28px",
+        },
+      },
     },
   },
 });

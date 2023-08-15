@@ -1,4 +1,5 @@
 import { styled } from "../../theme/styled";
+import { FaUserCircle } from "react-icons/fa";
 
 export const StyledHomeLayout = styled("div", {
   padding: "0 16px",
@@ -6,27 +7,24 @@ export const StyledHomeLayout = styled("div", {
   flexDirection: "column",
 });
 
-export const StyledHomeSearch = styled("div", {});
-
-export const StyledHomeButtons = styled("div", {
-  marginTop: "36px",
+export const StyledHomeHeader = styled("div", {
   display: "flex",
   flexDirection: "row",
-  justifyContent: "center",
+  justifyContent: "space-between",
 });
 
-export const StyledHomeButtonLg = styled("div", {
-  marginRight: "8px",
+export const StyledHomeLogo = styled("img", {
+  width: "100px",
+  height: "40px",
+  objectFit: "contain",
+  marginTop: "-8px",
 });
 
-export const StyledHomeButtonsSm = styled("div", {
-  display: "grid",
-  gridTemplateColumns: "repeat(2, 1fr)",
-  gridTemplateRows: "repeat(2, 1fr)",
-  gridColumnGap: "8px",
-  gridRowGap: "8px",
+export const StyledHomeUser = styled(FaUserCircle, {
+  fontSize: "26px",
+  color: "$primary",
+  cursor: "pointer",
 });
-
 export const StyledHomeTitle = styled("div", {
   margin: "32px 0",
   fontSize: "20px",
@@ -34,8 +32,11 @@ export const StyledHomeTitle = styled("div", {
   lineHeight: "27px",
 });
 
-export const StyledHomeFavorites = styled("div", {
+export const StyledHomeContent = styled("div", {
   display: "flex",
-  flexDirection: "column",
-  gap: "10px",
+  flexDirection: "row",
+  justifyContent: "center",
+  flexWrap: "wrap",
+  gap: "12px",
 });
+

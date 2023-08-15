@@ -1,80 +1,64 @@
-import React from "react";
-import TextInput from "../components/TextInput/TextInput";
-import HomeLayout from "../components/HomeLayout/HomeLayout";
-import HomeButton from "../components/HomeButton/HomeButton";
-import Title from "../components/Title/Title";
-import ProfesionalCard from "../components/ProfesionalCard/ProfesionalCard";
-import ScrollLayout from "../components/ScrollLayout/ScrollLayout";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import CategoryButton from "../components/CategoryButton/CategoryButton";
+import HomeLayout from "../components/HomeLayout/HomeLayout";
+import {
+  StyledHomeLogo,
+  StyledHomeUser,
+} from "../components/HomeLayout/HomeLayout.styles";
+import ScrollLayout from "../components/ScrollLayout/ScrollLayout";
+import Title from "../components/Title/Title";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [jobs, setJobs] = useState([]);
+
+  async function getJobs() {
+    const response = await fetch("http://localhost:8080/jobs");
+    const data = await response.json();
+    setJobs(data);
+  }
+
+  useEffect(() => {
+    getJobs();
+  }, []);
 
   return (
     <ScrollLayout>
       <ScrollLayout.ScrollPart>
         <HomeLayout>
-          <HomeLayout.Search>
-            <TextInput search placeholder="¿Que necesitas hoy?"></TextInput>
-          </HomeLayout.Search>
-          <HomeLayout.Buttons>
-            <HomeLayout.ButtonLg>
-              <HomeButton
-                text="Catalogo de profesionales"
-                icon="\img\ingeniero.png"
-                color="prussian"
-                size="lg"
-                onClick={() => navigate("/categories")}
-              ></HomeButton>
-            </HomeLayout.ButtonLg>
-            <HomeLayout.ButtonsSm>
-              <HomeButton
-                text="Gasista"
-                icon="\img\gas.png"
-                color="primary"
-                size="sm"
-                onClick={() => navigate("/categories/2")}
-              />
-              <HomeButton
-                text="Plomero"
-                icon="\img\plomero.png"
-                color="secondary"
-                size="sm"
-                onClick={() => navigate("/categories/1")}
-              />
-              <HomeButton
-                text="Refrigeración"
-                icon="\img\refrigeracion.png"
-                color="munsell"
-                size="sm"
-                onClick={() => navigate("/categories/16")}
-              />
-              <HomeButton
-                text="Electricista"
-                icon="\img\electricidad.png"
-                color="tiffany"
-                size="sm"
-                onClick={() => navigate("/categories/4")}
-              />
-            </HomeLayout.ButtonsSm>
-          </HomeLayout.Buttons>
-          <HomeLayout.Title>
-            <Title>Favoritos</Title>
-          </HomeLayout.Title>
-          <HomeLayout.Favorites>
-            <ProfesionalCard
-              name="Juan Manuel Androetto"
-              onClick={() => navigate(`/categories/1/profesional/1}`)}
-              profession="Electricista"
-              photo="/img/plomero-foto.jpg"
-            />
-            <ProfesionalCard
-              name="Juan Manuel Androetto"
-              onClick={() => navigate(`/categories/1/profesional/1}`)}
-              profession="Electricista"
-              photo="/img/plomero-foto.jpg"
-            />
-          </HomeLayout.Favorites>
+          <HomeLayout.Header>
+            <StyledHomeLogo src="/img/JOBO.png" alt="logo" />
+            <StyledHomeUser onClick={() => navigate("/account")} />
+          </HomeLayout.Header>
+          <ScrollLayout.ScrollPart>
+            <HomeLayout.Title>
+              <Title size={"xl"}>Categorias</Title>
+            </HomeLayout.Title>
+            <HomeLayout.Content>
+              {jobs.map((category) => (
+                <CategoryButton
+                  key={category.id}
+                  profession={category?.title}
+                  icon={category?.icon}
+                  color={
+                    category?.id % 5 === 0
+                      ? "primary"
+                      : category?.id % 5 === 1
+                      ? "secondary"
+                      : category?.id % 5 === 2
+                      ? "tertiary"
+                      : category?.id % 5 === 3
+                      ? "quaternary"
+                      : "quinary"
+                  }
+                  onClick={() => {
+                    navigate("/categories/" + category.id);
+                  }}
+                />
+              ))}
+            </HomeLayout.Content>
+          </ScrollLayout.ScrollPart>
         </HomeLayout>
       </ScrollLayout.ScrollPart>
     </ScrollLayout>

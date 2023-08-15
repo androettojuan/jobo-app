@@ -1,5 +1,5 @@
 import React from "react";
-import { FiHome, FiUser } from "react-icons/fi";
+import { FiHome, FiBookmark } from "react-icons/fi";
 import { useNavigate } from "react-router";
 import {
   StyledBottomBarIcon,
@@ -25,11 +25,11 @@ const pagesList = [
     label: "Comentarios",
   },
   {
-    icon: FiUser,
-    page: "/account",
-    name: "cuenta",
+    icon: FiBookmark,
+    page: "/favorites",
+    name: "favoritos",
     show: "not-admin",
-    label: "Mi cuenta",
+    label: "Favoritos",
   },
 ];
 

@@ -5,11 +5,11 @@ import {
   StyledCategoryProfession,
 } from "./CategoryButton.styles";
 
-const CategoryButton = ({ onClick, profession, icon }) => {
+const CategoryButton = ({ onClick, profession, icon, color }) => {
   return (
-    <StyledCategoryButton onClick={onClick}>
-      <StyledCategoryIcon src={icon} alt="icon"/>
+    <StyledCategoryButton onClick={onClick} color={color}>
       <StyledCategoryProfession>{profession}</StyledCategoryProfession>
+      <StyledCategoryIcon src={icon} alt="icon"/>
     </StyledCategoryButton>
   );
 };

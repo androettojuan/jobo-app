@@ -35,7 +35,7 @@ const ProfessionPage = () => {
     <ProfessionLayout>
       <Breadcrumb
         pages={[
-          { label: "Categorias", url: "/categories", name: "categories" },
+          { label: "Inicio", url: "/", name: "home" },
           { label: nameProfession(), name: "profession" },
         ]}
       ></Breadcrumb>
