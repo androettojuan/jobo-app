@@ -18,18 +18,18 @@ const pagesList = [
     show: "not-admin",
   },
   {
-    icon: AiOutlineComment,
-    page: "/comments",
-    name: "comments",
-    show: "admin",
-    label: "Comentarios",
-  },
-  {
     icon: FiBookmark,
     page: "/favorites",
     name: "favoritos",
     show: "not-admin",
     label: "Favoritos",
+  },
+  {
+    icon: AiOutlineComment,
+    page: "/comments",
+    name: "comments",
+    show: "admin",
+    label: "Comentarios",
   },
 ];
 

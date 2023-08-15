@@ -21,7 +21,7 @@ export const StyledHomeLogo = styled("img", {
 });
 
 export const StyledHomeUser = styled(FaUserCircle, {
-  fontSize: "26px",
+  fontSize: "30px",
   color: "$primary",
   cursor: "pointer",
 });

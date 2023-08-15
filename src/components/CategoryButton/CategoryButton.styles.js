@@ -15,20 +15,11 @@ export const StyledCategoryButton = styled("div", {
   "@media (max-width: 768px)": { width: "100px", height: "90px" },
   variants: {
     color: {
-      primary: {
-        backgroundColor: "$primary",
-      },
       secondary: {
         backgroundColor: "$secondary",
       },
       tertiary: {
-        backgroundColor: "$tiffany",
-      },
-      quaternary: {
         backgroundColor: "$munsell",
-      },
-      quinary: {
-        backgroundColor: "$prussian",
       },
     },
   },
@@ -36,6 +27,7 @@ export const StyledCategoryButton = styled("div", {
 
 export const StyledCategoryIcon = styled("img", {
   width: "36px",
+  height: "36px",
   filter: "invert(1)",
 });
 

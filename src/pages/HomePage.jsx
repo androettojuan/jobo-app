@@ -42,15 +42,7 @@ const HomePage = () => {
                   profession={category?.title}
                   icon={category?.icon}
                   color={
-                    category?.id % 5 === 0
-                      ? "primary"
-                      : category?.id % 5 === 1
-                      ? "secondary"
-                      : category?.id % 5 === 2
-                      ? "tertiary"
-                      : category?.id % 5 === 3
-                      ? "quaternary"
-                      : "quinary"
+                    category.id % 2 === 0 ? "tertiary" : "secondary"
                   }
                   onClick={() => {
                     navigate("/categories/" + category.id);

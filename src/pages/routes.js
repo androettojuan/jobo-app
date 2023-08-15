@@ -5,6 +5,7 @@ import ProfessionPage from "./ProfessionPage";
 import ProfesionalPage from "./ProfesionalPage";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
+import FavoritePage from "./FavoritePage";
 
 export const routes = [
   {
@@ -27,6 +28,10 @@ export const routes = [
     path: "/categories/:id",
     component: ProfessionPage,
   },
+  {
+    path: "/favorites",
+    component: FavoritePage,
+  }
 ];
 
 export const routesRegister = [
