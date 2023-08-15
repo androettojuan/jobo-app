@@ -55,8 +55,7 @@ const RegisterPage = () => {
         job_id: job_1,
         description: description_1,
       }),
-    })
-      .then((response) => response.json())
+    });
   }
 
   useEffect(() => {
