@@ -9,8 +9,8 @@ export const StyledCategoryButton = styled("div", {
   borderRadius: "16px",
   padding: "6px",
   cursor: "pointer",
-  width: "130px",
-  height: "120px",
+  width: "120px",
+  height: "110px",
   gap: "6px",
   "@media (max-width: 768px)": {
     width: "100px",
@@ -31,8 +31,8 @@ export const StyledCategoryButton = styled("div", {
 });
 
 export const StyledCategoryIcon = styled("img", {
-  width: "36px",
-  height: "36px",
+  width: "42px",
+  height: "42px",
 });
 
 export const StyledCategoryProfession = styled("span", {

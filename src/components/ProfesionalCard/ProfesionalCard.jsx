@@ -14,9 +14,14 @@ import {
 } from "./ProfesionalCard.styles";
 import { AiFillHeart, AiFillStar, AiOutlineHeart } from "react-icons/ai";
 
-const ProfesionalCard = ({ name, profession, photo, onClick }) => {
-  const isFavorite = true;
-
+const ProfesionalCard = ({
+  name,
+  profession,
+  photo,
+  onClick,
+  favorite,
+  isFavorite,
+}) => {
   return (
     <StyledProfesionalCard onClick={onClick}>
       <StyledPhoto src={photo} alt="foto profesional" />
@@ -26,8 +31,8 @@ const ProfesionalCard = ({ name, profession, photo, onClick }) => {
           <StyledProfession>{profession}</StyledProfession>
         </StyledInfoContainer>
         <StyledFavoritesAndRating>
-          <StyledFavorites>
-            {isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
+          <StyledFavorites onClick={isFavorite}>
+            {favorite ? <AiFillHeart /> : <AiOutlineHeart />}
           </StyledFavorites>
           <StyledRatingContainer>
             <StyledRatingIcon>

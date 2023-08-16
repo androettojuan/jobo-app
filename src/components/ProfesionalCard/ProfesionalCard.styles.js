@@ -6,6 +6,7 @@ export const StyledProfesionalCard = styled("div", {
   shadow: 1,
   borderRadius: "16px",
   cursor: "pointer",
+  height: "90px",
 });
 
 export const StyledPhoto = styled("img", {
@@ -50,7 +51,7 @@ export const StyledFavoritesAndRating = styled("div", {
 
 export const StyledFavorites = styled("div", {
   color: "$red",
-  fontSize: "18px",
+  fontSize: "24px",
 });
 
 export const StyledRatingContainer = styled("div", {

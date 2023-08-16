@@ -9,6 +9,7 @@ const ProfessionPage = () => {
   const { id } = useParams();
   const [workers, setWorkers] = useState([]);
   const [jobs, setJobs] = useState([]);
+  const [favorites, setFavorites] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,13 +42,20 @@ const ProfessionPage = () => {
       ></Breadcrumb>
       <ProfessionLayout.ContainerWorkers>
         {workers
-          .filter((worker) => worker.job_id === parseInt(id) && worker.is_active)
+          .filter(
+            (worker) => worker.job_id === parseInt(id) && worker.is_active
+          )
           .map((worker) => (
             <ProfesionalCard
               key={worker.id}
               name={worker.name + " " + worker.lastname}
               lastname={worker.lastname}
               photo={worker.photo}
+              favorite={favorites}
+              isFavorite={(e) => {
+                e.stopPropagation();
+                setFavorites(!favorites);
+              }}
               profession={jobs.find((job) => job.id === worker.job_id).title}
               onClick={() =>
                 navigate(`/categories/${id}/profesional/${worker.id}}`)
