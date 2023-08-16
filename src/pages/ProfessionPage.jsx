@@ -7,10 +7,37 @@ import { useNavigate } from "react-router";
 
 const ProfessionPage = () => {
   const { id } = useParams();
+  const userIdFavorites = parseInt(localStorage.getItem("userId"));
   const [workers, setWorkers] = useState([]);
   const [jobs, setJobs] = useState([]);
-  const [favorites, setFavorites] = useState(false);
+  const [favorites, setFavorites] = useState([]);
   const navigate = useNavigate();
+
+  async function getFavorites(id) {
+    const response = await fetch("http://localhost:8080/favorites/" + id);
+    const data = await response.json();
+    setFavorites(data);
+  }
+
+  async function addFavorite(userId, userAdminId) {
+    await fetch("http://localhost:8080/favorites", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user_id: userId,
+        user_admin_id: userAdminId,
+        is_favorite: 1,
+      }),
+    }).then(() => getFavorites(userIdFavorites));
+  }
+
+  async function deleteFavorite(id, adminId) {
+    await fetch("http://localhost:8080/favorites/" + id + "/" + adminId, {
+      method: "DELETE",
+    }).then(() => getFavorites(userIdFavorites));
+  }
 
   useEffect(() => {
     async function getWorkers() {
@@ -20,7 +47,8 @@ const ProfessionPage = () => {
     }
     getJobs();
     getWorkers();
-  }, [id]);
+    getFavorites(userIdFavorites);
+  }, [id, userIdFavorites]);
 
   async function getJobs() {
     const response = await fetch("http://localhost:8080/jobs");
@@ -51,10 +79,31 @@ const ProfessionPage = () => {
               name={worker.name + " " + worker.lastname}
               lastname={worker.lastname}
               photo={worker.photo}
-              favorite={favorites}
+              favorite={
+                favorites.find(
+                  (favorite) => favorite.user_admin_id === worker.id
+                )
+                  ? true
+                  : false
+              }
               isFavorite={(e) => {
                 e.stopPropagation();
-                setFavorites(!favorites);
+                if (
+                  favorites.find(
+                    (favorite) =>
+                      parseInt(favorite.user_admin_id) === parseInt(worker.id)
+                  )
+                ) {
+                  deleteFavorite(
+                    userIdFavorites,
+                    favorites.find(
+                      (favorite) =>
+                        parseInt(favorite.user_admin_id) === parseInt(worker.id)
+                    ).user_admin_id
+                  );
+                } else {
+                  addFavorite(userIdFavorites, worker.id);
+                }
               }}
               profession={jobs.find((job) => job.id === worker.job_id).title}
               onClick={() =>
