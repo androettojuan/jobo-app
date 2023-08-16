@@ -4,6 +4,7 @@ import ProfesionalCard from "../components/ProfesionalCard/ProfesionalCard";
 import { useParams } from "react-router";
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb";
 import { useNavigate } from "react-router";
+import NoResults from "../components/NoResults/NoResults";
 
 const ProfessionPage = () => {
   const { id } = useParams();
@@ -69,48 +70,55 @@ const ProfessionPage = () => {
         ]}
       ></Breadcrumb>
       <ProfessionLayout.ContainerWorkers>
-        {workers
-          .filter(
-            (worker) => worker.job_id === parseInt(id) && worker.is_active
-          )
-          .map((worker) => (
-            <ProfesionalCard
-              key={worker.id}
-              name={worker.name + " " + worker.lastname}
-              lastname={worker.lastname}
-              photo={worker.photo}
-              favorite={
-                favorites.find(
-                  (favorite) => favorite.user_admin_id === worker.id
-                )
-                  ? true
-                  : false
-              }
-              isFavorite={(e) => {
-                e.stopPropagation();
-                if (
+        {workers?.length > 0 ? (
+          workers
+            .filter(
+              (worker) => worker.job_id === parseInt(id) && worker.is_active
+            )
+            .map((worker) => (
+              <ProfesionalCard
+                key={worker.id}
+                name={worker.name + " " + worker.lastname}
+                lastname={worker.lastname}
+                photo={worker.photo}
+                favorite={
                   favorites.find(
-                    (favorite) =>
-                      parseInt(favorite.user_admin_id) === parseInt(worker.id)
+                    (favorite) => favorite.user_admin_id === worker.id
                   )
-                ) {
-                  deleteFavorite(
-                    userIdFavorites,
+                    ? true
+                    : false
+                }
+                isFavorite={(e) => {
+                  e.stopPropagation();
+                  if (
                     favorites.find(
                       (favorite) =>
                         parseInt(favorite.user_admin_id) === parseInt(worker.id)
-                    ).user_admin_id
-                  );
-                } else {
-                  addFavorite(userIdFavorites, worker.id);
+                    )
+                  ) {
+                    deleteFavorite(
+                      userIdFavorites,
+                      favorites.find(
+                        (favorite) =>
+                          parseInt(favorite.user_admin_id) ===
+                          parseInt(worker.id)
+                      ).user_admin_id
+                    );
+                  } else {
+                    addFavorite(userIdFavorites, worker.id);
+                  }
+                }}
+                profession={jobs.find((job) => job.id === worker.job_id).title}
+                onClick={() =>
+                  navigate(`/categories/${id}/profesional/${worker.id}}`)
                 }
-              }}
-              profession={jobs.find((job) => job.id === worker.job_id).title}
-              onClick={() =>
-                navigate(`/categories/${id}/profesional/${worker.id}}`)
-              }
-            />
-          ))}
+              />
+            ))
+        ) : (
+          <NoResults
+            msg={"No hay profesionales disponibles en esta categoría"}
+          />
+        )}
       </ProfessionLayout.ContainerWorkers>
     </ProfessionLayout>
   );
