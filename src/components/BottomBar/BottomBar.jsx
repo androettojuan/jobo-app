@@ -1,5 +1,6 @@
 import React from "react";
-import { FiHome, FiBookmark } from "react-icons/fi";
+import { FiHome } from "react-icons/fi";
+import { AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router";
 import {
   StyledBottomBarIcon,
@@ -18,7 +19,7 @@ const pagesList = [
     show: "not-admin",
   },
   {
-    icon: FiBookmark,
+    icon: AiOutlineHeart,
     page: "/favorites",
     name: "favoritos",
     show: "not-admin",

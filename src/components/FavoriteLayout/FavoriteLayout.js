@@ -1,8 +1,6 @@
-import { StyledFavoriteContent, StyledFavoriteLayout, StyledFavoriteTitle } from "./FavoriteLayout.styles";
+import { StyledFavoriteContent, StyledFavoriteLayout } from "./FavoriteLayout.styles";
 
 const FavoriteLayout = StyledFavoriteLayout;
-
-FavoriteLayout.Title = StyledFavoriteTitle;
 
 FavoriteLayout.Content = StyledFavoriteContent;
 
