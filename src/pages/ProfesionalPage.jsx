@@ -100,6 +100,18 @@ const ProfesionalPage = () => {
     }, 5000);
   }, [id, userId]);
 
+  const promedio = () => {
+    //sacar promedio para el profesional desde el rating de los comentarios
+    let suma = 0;
+    let promedio = 0;
+    comments.map((comment) => {
+      suma = suma + comment.rating;
+      return null;
+    });
+    promedio = suma / comments.length;
+    return promedio;
+  };
+
   return (
     <ScrollLayout>
       <ScrollLayout.FixedPart>
@@ -129,7 +141,7 @@ const ProfesionalPage = () => {
               }
               admin
             ></AccountName>
-            <Ratings></Ratings>
+            <Ratings rating={promedio() || "No tiene puntuación"} />
           </ProfesionalLayout.Name>
           <ProfesionalLayout.Description>
             <DescriptionAdmin>{profesional?.description}</DescriptionAdmin>
@@ -168,7 +180,7 @@ const ProfesionalPage = () => {
               comments.map((comment, index) => (
                 <Comments
                   key={index}
-                  rating={rating}
+                  rating={comment.rating}
                   photoAdmin={profesional?.photo}
                   nameAdmin={profesional?.name}
                   comment={comment}
@@ -198,7 +210,7 @@ const ProfesionalPage = () => {
                 comment !== null &&
                 user.id
               ) {
-                createComment(user.id, id, 5, comment);
+                createComment(user.id, id, rating, comment);
                 setShowModal(false);
               } else {
                 setShowAlert(true);

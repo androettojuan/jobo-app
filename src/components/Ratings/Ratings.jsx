@@ -6,13 +6,13 @@ import {
 } from "./Ratings.styles";
 import { AiFillStar } from "react-icons/ai";
 
-const Ratings = () => {
+const Ratings = ({rating}) => {
   return (
     <StyledRatings>
       <StyledRatingIcon>
         <AiFillStar />
       </StyledRatingIcon>
-      <StyledRatingText>4.6</StyledRatingText>
+      <StyledRatingText>{rating}</StyledRatingText>
     </StyledRatings>
   );
 };
