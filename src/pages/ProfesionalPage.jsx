@@ -27,6 +27,7 @@ const ProfesionalPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [comment, setComment] = useState("");
   const [showAlert, setShowAlert] = useState(false);
+  const [rating, setRating] = useState(5);
 
   // users
 
@@ -167,7 +168,7 @@ const ProfesionalPage = () => {
               comments.map((comment, index) => (
                 <Comments
                   key={index}
-                  rating={5}
+                  rating={rating}
                   photoAdmin={profesional?.photo}
                   nameAdmin={profesional?.name}
                   comment={comment}
@@ -186,6 +187,8 @@ const ProfesionalPage = () => {
             title="Escribe un comentario"
             textButton="Comentar"
             value={comment}
+            onClickRating={(rating) => setRating(rating)}
+            rating={rating}
             onChange={(e) => setComment(e.target.value)}
             onClose={() => setShowModal(false)}
             onClick={() => {

@@ -1,4 +1,6 @@
 import React from "react";
+import { AiFillStar } from "react-icons/ai";
+import Button from "../Button/Button";
 import {
   StyledModal,
   StyledModalBody,
@@ -8,11 +10,34 @@ import {
   StyledModalFooter,
   StyledModalHeader,
   StyledModalInput,
+  StyledModalRating,
   StyledModalTitle,
 } from "./Modal.styles";
-import Button from "../Button/Button";
 
-const Modal = ({ show, title, onClose, textButton, onChange, comment, onClick }) => {
+const ratings = [1, 2, 3, 4, 5];
+
+const selectRating = (rating, onClickRating) => {
+  return ratings.map((item) => (
+    <AiFillStar
+      key={item}
+      color={item <= rating ? "#FFC107" : "#E0E0E0"}
+      size={30}
+      onClick={() => onClickRating(item)}
+    />
+  ));
+};
+
+const Modal = ({
+  show,
+  title,
+  onClose,
+  textButton,
+  onChange,
+  comment,
+  onClick,
+  onClickRating,
+  rating,
+}) => {
   return (
     <StyledModal show={show}>
       <StyledModalFondo onClick={onClose}></StyledModalFondo>
@@ -22,6 +47,9 @@ const Modal = ({ show, title, onClose, textButton, onChange, comment, onClick })
           <StyledModalClose onClick={onClose} />
         </StyledModalHeader>
         <StyledModalBody>
+          <StyledModalRating>
+            {selectRating(rating, onClickRating)}
+          </StyledModalRating>
           <StyledModalInput
             type="text"
             placeholder="Escribe tu comentario"

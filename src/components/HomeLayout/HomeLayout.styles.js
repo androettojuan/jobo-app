@@ -38,5 +38,6 @@ export const StyledHomeContent = styled("div", {
   justifyContent: "center",
   flexWrap: "wrap",
   gap: "12px",
+  marginBottom: "12px",
 });
 

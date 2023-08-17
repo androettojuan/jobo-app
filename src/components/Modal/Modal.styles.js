@@ -76,6 +76,14 @@ export const StyledModalBody = styled("div", {
   borderBottom: "1px solid $light",
 });
 
+export const StyledModalRating = styled("div", {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "center",
+  paddingBottom: "16px",
+});
+
 export const StyledModalInput = styled("textarea", {
   width: "240px",
   maxWidth: "240px",
