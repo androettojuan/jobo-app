@@ -12,6 +12,7 @@ const ProfessionPage = () => {
   const [workers, setWorkers] = useState([]);
   const [jobs, setJobs] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [comments, setComments] = useState([]);
   const navigate = useNavigate();
 
   async function getFavorites(id) {
@@ -40,6 +41,12 @@ const ProfessionPage = () => {
     }).then(() => getFavorites(userIdFavorites));
   }
 
+  async function getComments() {
+    const response = await fetch("http://localhost:8080/comments");
+    const data = await response.json();
+    setComments(data);
+  }
+
   useEffect(() => {
     async function getWorkers() {
       const response = await fetch("http://localhost:8080/workers/" + id);
@@ -49,6 +56,7 @@ const ProfessionPage = () => {
     getJobs();
     getWorkers();
     getFavorites(userIdFavorites);
+    getComments();
   }, [id, userIdFavorites]);
 
   async function getJobs() {
@@ -81,6 +89,21 @@ const ProfessionPage = () => {
                 name={worker.name + " " + worker.lastname}
                 lastname={worker.lastname}
                 photo={worker.photo}
+                rating={
+                  comments.filter(
+                    (comment) => comment.user_admin_id === worker.id
+                  ).length > 0
+                    ? comments
+                        .filter(
+                          (comment) => comment.user_admin_id === worker.id
+                        )
+                        .map((comment) => comment.rating)
+                        .reduce((a, b) => a + b) /
+                      comments.filter(
+                        (comment) => comment.user_admin_id === worker.id
+                      ).length
+                    : "Sin calificar"
+                }
                 favorite={
                   favorites.find(
                     (favorite) => favorite.user_admin_id === worker.id

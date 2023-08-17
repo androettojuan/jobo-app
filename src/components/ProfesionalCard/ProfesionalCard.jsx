@@ -21,6 +21,7 @@ const ProfesionalCard = ({
   onClick,
   favorite,
   isFavorite,
+  rating
 }) => {
   return (
     <StyledProfesionalCard onClick={onClick}>
@@ -38,7 +39,7 @@ const ProfesionalCard = ({
             <StyledRatingIcon>
               <AiFillStar />
             </StyledRatingIcon>
-            <StyledRating>4.3</StyledRating>
+            <StyledRating>{rating}</StyledRating>
           </StyledRatingContainer>
         </StyledFavoritesAndRating>
       </StyledInfoAndFavorites>

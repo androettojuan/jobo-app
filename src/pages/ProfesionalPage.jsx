@@ -101,7 +101,6 @@ const ProfesionalPage = () => {
   }, [id, userId]);
 
   const promedio = () => {
-    //sacar promedio para el profesional desde el rating de los comentarios
     let suma = 0;
     let promedio = 0;
     comments.map((comment) => {
@@ -141,7 +140,7 @@ const ProfesionalPage = () => {
               }
               admin
             ></AccountName>
-            <Ratings rating={promedio() || "No tiene puntuación"} />
+            <Ratings rating={promedio() || "Sin calificar"} />
           </ProfesionalLayout.Name>
           <ProfesionalLayout.Description>
             <DescriptionAdmin>{profesional?.description}</DescriptionAdmin>
