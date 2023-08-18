@@ -108,6 +108,7 @@ const ProfesionalPage = () => {
       return null;
     });
     promedio = suma / comments.length;
+    if (isNaN(promedio)) return 0;
     return promedio.toFixed(1);
   };
 
