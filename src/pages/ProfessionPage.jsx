@@ -95,11 +95,14 @@ const ProfessionPage = () => {
                   ).length > 0
                     ? (
                         comments
-                          .filter((comment) => comment.user_admin_id === worker.id)
+                          .filter(
+                            (comment) => comment.user_admin_id === worker.id
+                          )
                           .map((comment) => comment.rating)
                           .reduce((a, b) => a + b) /
-                        comments.filter((comment) => comment.user_admin_id === worker.id)
-                          .length
+                        comments.filter(
+                          (comment) => comment.user_admin_id === worker.id
+                        ).length
                       ).toFixed(1)
                     : "Sin calificar"
                 }
@@ -137,9 +140,11 @@ const ProfessionPage = () => {
               />
             ))
         ) : (
-          <NoResults
-            msg={"No hay profesionales disponibles en esta categoría"}
-          />
+          <ProfessionLayout.NoResults>
+            <NoResults
+              msg={"No hay profesionales disponibles en esta categoría"}
+            />
+          </ProfessionLayout.NoResults>
         )}
       </ProfessionLayout.ContainerWorkers>
     </ProfessionLayout>

@@ -97,7 +97,9 @@ const FavoritePage = () => {
               );
             })
         ) : (
-          <NoResults msg="No tienes ningun profesional agregado a favoritos." />
+          <FavoriteLayout.NoResults>
+            <NoResults msg="No tienes ningun profesional agregado a favoritos." />
+          </FavoriteLayout.NoResults>
         )}
       </FavoriteLayout.Content>
     </FavoriteLayout>

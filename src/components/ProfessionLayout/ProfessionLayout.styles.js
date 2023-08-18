@@ -9,3 +9,7 @@ export const StyledProfessionContainerWorkers = styled("div", {
     flexDirection: "column",
     gap: "16px",
 });
+
+export const StyledProfessionNoResults = styled("div", {
+    marginTop: "60px",
+});

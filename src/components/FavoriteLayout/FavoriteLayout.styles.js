@@ -10,3 +10,7 @@ export const StyledFavoriteContent = styled("div", {
   gap: "16px",
   marginTop: "16px",
 });
+
+export const StyledFavoriteNoResults = styled("div", {
+  marginTop: "60px",
+});
