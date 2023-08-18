@@ -108,7 +108,7 @@ const ProfesionalPage = () => {
       return null;
     });
     promedio = suma / comments.length;
-    return promedio;
+    return promedio.toFixed(1);
   };
 
   return (
