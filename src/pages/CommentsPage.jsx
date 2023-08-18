@@ -3,6 +3,7 @@ import Title from "../components/Title/Title";
 import Comments from "../components/Comments/Comments";
 import CommentsLayout from "../components/CommentsLayout/CommentsLayout";
 import { useUserData } from "../utils/userData";
+import NoResults from "../components/NoResults/NoResults";
 
 const CommentsPage = () => {
   const user = useUserData();
@@ -36,19 +37,25 @@ const CommentsPage = () => {
         <Title>Comentarios</Title>
       </CommentsLayout.Title>
       <CommentsLayout.Comments>
-        {comments.map((comment) => (
-          <Comments
-            key={comment.id}
-            comment={comment}
-            rating={4}
-            photoAdmin={user?.photo}
-            nameAdmin={user?.name}
-            isAdmin={user?.is_profesional ? true : false}
-            update={() => {
-              getComments(user.id);
-            }}
-          ></Comments>
-        ))}
+        {comments.length > 0 ? (
+          comments.map((comment) => (
+            <Comments
+              key={comment.id}
+              comment={comment}
+              rating={4}
+              photoAdmin={user?.photo}
+              nameAdmin={user?.name}
+              isAdmin={user?.is_profesional ? true : false}
+              update={() => {
+                getComments(user.id);
+              }}
+            ></Comments>
+          ))
+        ) : (
+          <CommentsLayout.NoResults>
+            <NoResults msg={"Todavía no hay comentarios"} />
+          </CommentsLayout.NoResults>
+        )}
       </CommentsLayout.Comments>
     </CommentsLayout>
   );

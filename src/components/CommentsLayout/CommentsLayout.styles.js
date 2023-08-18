@@ -16,3 +16,7 @@ export const StyledComments = styled("div", {
   flexDirection: "column",
   gap: "12px",
 });
+
+export const StyledCommentsNoResults = styled("div", {
+  marginTop: "60px",
+});

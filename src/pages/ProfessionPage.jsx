@@ -131,7 +131,7 @@ const ProfessionPage = () => {
                     addFavorite(userIdFavorites, worker.id);
                   }
                 }}
-                profession={jobs.find((job) => job.id === worker.job_id).title}
+                profession={jobs.find((job) => job.id === worker.job_id)?.title}
                 onClick={() =>
                   navigate(`/categories/${id}/profesional/${worker.id}}`)
                 }
