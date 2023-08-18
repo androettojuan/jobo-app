@@ -26,10 +26,7 @@ export const StyledHomeUser = styled(FaUserCircle, {
   cursor: "pointer",
 });
 export const StyledHomeTitle = styled("div", {
-  margin: "32px 0",
-  fontSize: "20px",
-  fontWeight: 700,
-  lineHeight: "27px",
+  margin: "16px 0 24px 0",
 });
 
 export const StyledHomeContent = styled("div", {

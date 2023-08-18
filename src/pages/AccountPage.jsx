@@ -27,6 +27,7 @@ const AccountPage = () => {
   const [description, setDescription] = useState(user.description);
   const [active, setActive] = useState(user?.is_active === 1 ? true : false);
   const [show, setShow] = useState(false);
+  const [comments, setComments] = useState([]);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
@@ -112,11 +113,18 @@ const AccountPage = () => {
     }
   };
 
+  async function getComments() {
+    const response = await fetch("http://localhost:8080/comments");
+    const data = await response.json();
+    setComments(data);
+  }
+
   useEffect(() => {
     if (jobId) {
       getJob(jobId);
     }
     getJobs();
+    getComments();
   }, [jobId]);
 
   return (
@@ -219,7 +227,26 @@ const AccountPage = () => {
                       Profession={profession || ""}
                       admin
                     ></AccountName>
-                    <Ratings></Ratings>
+                    <Ratings
+                      rating={
+                        comments?.filter(
+                          (comment) => comment.user_admin_id === user.id
+                        ).length > 0
+                          ? (
+                              comments
+                                .filter(
+                                  (comment) =>
+                                    comment.user_admin_id === user.id
+                                )
+                                .map((comment) => comment.rating)
+                                .reduce((a, b) => a + b) /
+                              comments.filter(
+                                (comment) => comment.user_admin_id === user.id
+                              ).length
+                            ).toFixed(1)
+                          : "Sin calificar"
+                      }
+                    />
                   </>
                 )}
               </AccountLayout.Name>
@@ -263,7 +290,7 @@ const AccountPage = () => {
                     setShow(!show);
                     await disableUser(user.id, 1);
                   }}
-                  disabled={async () => {                    
+                  disabled={async () => {
                     await disableUser(user.id, 0);
                     setActive(false);
                     setShow(false);
